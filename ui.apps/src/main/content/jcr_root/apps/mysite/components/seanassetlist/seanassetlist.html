@@ -1,0 +1,26 @@
+
+
+
+<div data-cmp-is="seanassetlist">
+    <h1>seanassetlist component 1</h1>
+
+    <div class="cmp-helloworld__item" data-sly-use.model="com.mysite.core.models.SeanAssetListModel">
+        <p class="cmp-helloworld__item-label">Model path:</p>
+        <pre class="cmp-helloworld__item-output" data-cmp-hook-seanassetlist="model">${model.path}</pre>
+
+        <p class="cmp-helloworld__item-label">Model tag:</p>
+<!--            <pre class="cmp-helloworld__item-output" data-cmp-hook-seanassetlist="model">${model.tag}</pre>-->
+            <div data-sly-repeat="${model.tag}">${item}</div>
+        <hr>
+
+<!--        <div class="cmp-helloworld__item">-->
+<!--            <p class="cmp-helloworld__item-label">tag property:</p>-->
+<!--            <pre class="cmp-helloworld__item-output" data-cmp-hook-seanassetlist="property">${properties.tag}</pre>-->
+<!--        </div>-->
+
+        <div class="cmp-helloworld__item">
+            <p class="cmp-helloworld__item-label">seanassetlist property:</p>
+            <pre class="cmp-helloworld__item-output" data-cmp-hook-seanassetlist="property">${properties.path}</pre>
+        </div>
+    </div>
+</div>
