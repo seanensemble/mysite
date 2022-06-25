@@ -76,7 +76,7 @@ public class TagServiceImpl implements TagService {
 //    }
 
 
-    public Map<String,String> createTextSearchQuery(String tagId, String searchPath){
+    public Map<String,String> createTextSearchQuery(List<String> tagId, String searchPath){
         Map<String,String> queryMap=new HashMap<>();
         queryMap.put("type","cq:Asset");
         queryMap.put("path","/content/dam/mysite");
@@ -91,7 +91,7 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public List<String> searchResult(String tagId, String searchPath){
+    public List<String> searchResult(List<String> tagId, String searchPath){
         System.out.println("\n ----SEARCH RESULT--------searchResult");
         JSONObject searchResult=new JSONObject();
         List<Hit> hits = new ArrayList();

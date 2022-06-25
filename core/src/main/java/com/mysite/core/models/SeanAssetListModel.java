@@ -55,7 +55,7 @@ public class SeanAssetListModel {
     private String path;
 
     @ValueMapValue
-    private String tag;
+    private List<String> tag;
 
     @PostConstruct
     protected void init() {
