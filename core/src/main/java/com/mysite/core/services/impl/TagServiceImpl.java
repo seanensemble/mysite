@@ -83,10 +83,37 @@ public class TagServiceImpl implements TagService {
         queryMap.put("property.and","true");
         queryMap.put("property", "jcr:content/metadata/cq:tags");
 
-        queryMap.put("property.1_value","seantags:tagone");
-        queryMap.put("property.2_value","tagtwo");
+//        queryMap.put("property.1_value","seantags:tagone");
+//        queryMap.put("property.2_value","%tagtwo%");
+
 //        queryMap.put("path", searchPath);
 //        queryMap.put("tagid", tagId);
+
+        System.out.println("");
+        System.out.println("");
+
+        System.out.println("tagId.size()");
+        System.out.println(tagId.size());
+
+        for (int i = 1; i <= tagId.size(); i++) {
+            System.out.println("new loooooooop");
+            System.out.println(i);
+            System.out.println(tagId.get(i-1)); // Cannot access the iterator
+            System.out.println("above for value and i");
+            String prop = String.format("property.%s_value", String.valueOf(i));
+            String tagInclude = String.format("%%%s%%", tagId.get(i-1));
+            System.out.println("prop...............");
+            System.out.println(prop);
+            System.out.println("tagInclude...............");
+            System.out.println(tagInclude);
+            queryMap.put(prop,tagInclude);
+        }
+
+        System.out.println("");
+        System.out.println("");
+
+        queryMap.put("property.operation","like");
+
         return queryMap;
     }
 
