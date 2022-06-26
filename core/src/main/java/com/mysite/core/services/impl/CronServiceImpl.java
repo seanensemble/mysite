@@ -18,7 +18,7 @@ public class CronServiceImpl implements CronService {
     private Scheduler scheduler;
 
     public CronServiceImpl() {
-        System.out.println("2 Inside constructor of CronServiceImpl...");
+//        System.out.println("2 Inside constructor of CronServiceImpl...");
         job = new Runnable() {
             public void run() {
                 System.out.println("2 Executing the job");
@@ -30,23 +30,12 @@ public class CronServiceImpl implements CronService {
 
     @Activate
     public void activate(ComponentContext componentContext){
-        System.out.println("\n ==============2 CronService ACTIVATE================");
-        job.run();
-        this.scheduler.schedule(this.job,  scheduler.NOW(3, 5));
-        String cronExpression = " 0/5 * * * * ? *";
+//        System.out.println("\n ==============non-OSGI CronService ACTIVATE================");
+//        job.run();
+//        this.scheduler.schedule(this.job,  scheduler.NOW(3, 5));
+//        String cronExpression = " 0/5 * * * * ? *";
 //        this.scheduler.schedule(this.job,  scheduler.EXPR(cronExpression));
     }
 
-    @Deactivate
-    public void deactivate(ComponentContext componentContext){
-        System.out.println("\n ==============CronService DEACTIVATE================");
-        job.run();
-    }
-
-    @Modified
-    public void modified(ComponentContext componentContext){
-        System.out.println("\n ==============CronService MODIFIED================");
-        job.run();
-    }
 
 }

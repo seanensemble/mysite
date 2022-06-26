@@ -33,13 +33,15 @@ public class OSGiCronServiceImpl implements OSGiCronService {
     private Runnable job;
     private static final Logger LOG = LoggerFactory.getLogger(TagService.class);
 
+    private String cronExpression;
     @Reference
     private Scheduler scheduler;
 
+    private ScheduleOptions scheduleOptions;
 
     @Activate
     public void activate(ServiceConfig serviceConfig){
-        System.out.println("\n ==============2 OSGiCronService ACTIVATE================");
+        System.out.println("\n ==============4 OSGiCronService ACTIVATE================");
         cronServiceName=serviceConfig.cronServiceName();
 
         job = new Runnable() {
@@ -51,15 +53,29 @@ public class OSGiCronServiceImpl implements OSGiCronService {
             }
         };
 
-        this.scheduler.schedule(this.job,  scheduler.NOW(3, 5));
-//        String cronExpression = " 0/5 * * * * ? *";
-//        this.scheduler.schedule(this.job,  scheduler.EXPR(cronExpression));
+//        this.scheduler.schedule(this.job,  scheduler.NOW(3, 5));
+//        ScheduleOptions scheduleOptions;
+        cronExpression = " 0/5 * * * * ? *";
+        scheduleOptions = scheduler.EXPR(cronExpression);
+        scheduleOptions.name("paramedname");
+
+        this.scheduler.schedule(this.job,  scheduleOptions);
+    }
+
+
+    @Modified
+    public void modified(ComponentContext componentContext){
+        // Called whenever you modified an OSGi config property, like "cronServiceName" above.
+        System.out.println("\n ==============CronService MODIFIED================");
+        this.scheduler.unschedule("paramedname");
+
+        this.scheduler.schedule(this.job,  scheduleOptions);
     }
 
     @Deactivate
     public void deactivate(ComponentContext componentContext){
         System.out.println("\n ==============OSGiCronService DEACTIVATE================");
-//        this.scheduler.unschedule();
+        this.scheduler.unschedule("paramedname");
     }
 
 
