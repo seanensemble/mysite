@@ -58,21 +58,45 @@ public class OSGiCronServiceImpl implements Runnable {
     public void run() {
         System.out.println("printing out message: " + cronMessage);
         LOG.info("**** Scheduler run : {}", cronMessage);
-
     }
 
     @Activate
     public void activate(ServiceConfig serviceConfig){
+
         System.out.println("\n ==============4 OSGiCronService ACTIVATE================");
+
+
         cronMessage = serviceConfig.cron_message();
-        
+
+        cronExpression = serviceConfig.scheduler_expression();
+
+        scheduleOptions = scheduler.EXPR(cronExpression);
+        scheduleOptions.name("paramedname");
+
+        this.scheduler.schedule(this,  scheduleOptions);
+    }
+
+    @Modified
+    public void modified(ServiceConfig serviceConfig){
+        // Called whenever you modified an OSGi config property, like "cronServiceName" above.
+        System.out.println("\n ==============CronService MODIFIED================");
+        this.scheduler.unschedule("paramedname");
+
+        cronMessage = serviceConfig.cron_message();
+
+        cronExpression = serviceConfig.scheduler_expression();
+
+        scheduleOptions = scheduler.EXPR(cronExpression);
+        scheduleOptions.name("paramedname");
+
+        this.scheduler.schedule(this,  scheduleOptions);
     }
 
 
-
     @Deactivate
-    public void deactivate(ComponentContext componentContext){
+    public void deactivate(ServiceConfig serviceConfig){
         System.out.println("\n ==============OSGiCronService DEACTIVATE================");
+        this.scheduler.unschedule("paramedname");
     }
 
 
