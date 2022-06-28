@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:cloudservicename="facebookconnect"
+        cq:lastModified="{Date}2017-03-14T16:55:30.895-07:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/social/connect/templates/facebookconnect"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="We.Retail Facebook Social Login"
+        jcr:uuid="afb73d4b-bc38-45cf-adcf-d04beb7aa227"
+        sling:resourceType="social/connect/components/facebookconnectpage"
+        thumbnailPath="/libs/social/connect/templates/facebookconnect/thumbnail.png"/>
+</jcr:root>

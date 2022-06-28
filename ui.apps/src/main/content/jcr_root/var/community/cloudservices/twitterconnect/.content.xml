@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:cloudservicename="twitterconnect"
+        cq:lastModified="{Date}2017-03-14T16:55:31.824-07:00"
+        cq:lastModifiedBy="admin"
+        cq:template="/libs/social/connect/templates/twitterconnect"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="We.Retail Twitter Social Login"
+        jcr:uuid="9711c66a-ad0f-43b6-965d-774d5b5f1d34"
+        sling:resourceType="social/connect/components/twitterconnectpage"
+        thumbnailPath="/libs/social/connect/templates/twitterconnect/thumbnail.png"/>
+</jcr:root>

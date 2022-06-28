@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:isCheckedOut="{Boolean}false"
+    jcr:primaryType="cq:WorkflowModel"
+    jcr:uuid="b0044207-b582-444a-b3e6-5c76e3bee79a"
+    sling:resourceType="cq/workflow/components/model"
+    description="This workflow manages the processing of sub-assets"
+    title="DAM Process Sub-Asset">
+    <metaData
+        cq:lastModified="{Long}1477080042457"
+        cq:lastModifiedBy="admin"
+        jcr:primaryType="nt:unstructured"
+        tags="dam,wcm"
+        transient="true"/>
+    <nodes jcr:primaryType="nt:unstructured">
+        <node0
+            jcr:primaryType="cq:WorkflowNode"
+            title="Start"
+            type="START">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node0>
+        <node1
+            jcr:primaryType="cq:WorkflowNode"
+            description="This process will create web enabled rendition for the subasset."
+            title="Create Web Enabled Image"
+            type="PROCESS">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                CONFIGS="[140:100:false,48:48:false,319:319:false]"
+                CREATE_FPO_MIMETYPES="[image/pjpeg,image/jpeg,image/jpg,image/gif,image/x-png,image/tiff,image/png,application/x-photoshop,application/photoshop,image/vnd.adobe.photoshop,application/vnd.adobe.photoshop,image/bmp,image/x-tiff]"
+                FPO_QUALITY="10"
+                HEIGHT="1280"
+                MIME_TYPE="image/jpeg"
+                MIMETYPE="image/jpeg"
+                PROCESS="com.day.cq.dam.core.process.CreateWebEnabledImageProcess"
+                PROCESS_AUTO_ADVANCE="true"
+                QUALITY="90"
+                SKIP="[audio/mpeg,video/(.*)]"
+                WIDTH="1280"/>
+        </node1>
+        <node2
+            jcr:primaryType="cq:WorkflowNode"
+            title="End"
+            type="END">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node2>
+    </nodes>
+    <transitions jcr:primaryType="nt:unstructured">
+        <node0_x0023_node1
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node0"
+            rule=""
+            to="node1">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node0_x0023_node1>
+        <node1_x0023_node2
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node1"
+            rule=""
+            to="node2">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node1_x0023_node2>
+    </transitions>
+</jcr:root>

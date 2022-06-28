@@ -127,8 +127,6 @@ public class TagServiceImpl implements TagService {
         try {
             System.out.println("\n tryyyyyyyy");
 
-
-
             resourceResolver = ResolverUtil.newResolver(resourceResolverFactory);
             final Session session = resourceResolver.adaptTo(Session.class);
             Query query = queryBuilder.createQuery(PredicateGroup.create(createTextSearchQuery(tagId,searchPath)), session);

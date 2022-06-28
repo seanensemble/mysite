@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:Folder"
+    lastAccessed="{Date}2022-06-28T14:30:41.861-07:00"
+    lastStatus="{Long}0"
+    valid="{Boolean}true"/>

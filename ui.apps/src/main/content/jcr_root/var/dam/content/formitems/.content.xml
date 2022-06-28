@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="nt:unstructured">
+    <rep:policy/>
+    <license
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="License"
+        name="jcr:content/metadata/stock:license"/>
+    <by
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="By"
+        name="jcr:content/metadata/stock:creatorName"/>
+    <content_type
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Content Type"
+        name="jcr:content/metadata/stock:contentType"/>
+    <file_
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="File #"
+        name="jcr:content/metadata/stock:id"/>
+    <category
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Category"
+        name="jcr:content/metadata/stock:category"/>
+    <usage
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Usage"
+        name="jcr:content/usages/dam:score"/>
+    <impressions
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Impressions"
+        name="jcr:content/performance/dam:impressionCount"/>
+    <clicks
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Clicks"
+        name="jcr:content/performance/dam:clickCount"/>
+    <description
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Description"
+        name="jcr:content/metadata/dc:description"/>
+    <creator_tool
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Creator Tool"
+        name="jcr:content/metadata/xmp:CreatorTool"/>
+    <on_time
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="On Time"
+        name="jcr:content/onTime"/>
+    <off_time
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Off Time"
+        name="jcr:content/offTime"/>
+    <creator
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Creator"
+        name="jcr:content/metadata/dc:creator"/>
+    <contributor
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Contributor"
+        name="jcr:content/metadata/dc:contributor"/>
+    <copyright
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Copyright"
+        name="jcr:content/metadata/dc:rights"/>
+    <copyright_owner
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Copyright Owner"
+        name="jcr:content/metadata/xmpRights:Owner"/>
+    <usage_terms
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Usage Terms"
+        name="jcr:content/metadata/xmpRights:UsageTerms"/>
+    <expires
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Expires"
+        name="jcr:content/metadata/prism:expirationDate"/>
+    <title
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Title"
+        name="jcr:content/metadata/dc:title"/>
+    <type
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Type"
+        name="jcr:content/metadata/dc:format"/>
+    <language
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Language"
+        name="jcr:content/metadata/dc:language"/>
+    <tags
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Tags"
+        name="jcr:content/metadata/cq:tags"/>
+    <smart_tags
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Smart Tags"
+        name="jcr:content/metadata/predictedTags"/>
+    <created
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Created"
+        name="jcr:created"/>
+    <review_status
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Review Status"
+        name="jcr:content/metadata/dam:status"/>
+    <id
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="ID"
+        name="jcr:uuid"/>
+    <creative_rating
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Creative Rating"
+        name="jcr:content/metadata/"/>
+    <elevate_for_searchkeywords
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Elevate for search keywords"
+        name="jcr:content/metadata/"/>
+    <creator_s_job_title
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Creator's Job Title"
+        name="jcr:content/metadata/photoshop:AuthorsPosition"/>
+    <address
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Address"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiAdrExtadr"/>
+    <city
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="City"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiAdrCity"/>
+    <state_province
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="State/Province"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiAdrRegion"/>
+    <postal_code
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Postal Code"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiAdrPcode"/>
+    <country
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Country"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiAdrCtry"/>
+    <phone_s_
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Phone(s)"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiTelWork"/>
+    <e-mail_s_
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="E-Mail(s)"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiEmailWork"/>
+    <website_s_
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Website(s)"
+        name="jcr:content/metadata/Iptc4xmpCore:CreatorContactInfo/Iptc4xmpCore:CiUrlWork"/>
+    <date_created
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Date Created"
+        name="jcr:content/metadata/photoshop:DateCreated"/>
+    <intellectual_genre
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Intellectual Genre"
+        name="jcr:content/metadata/Iptc4xmpCore:IntellectualGenre"/>
+    <iptc_scene_code
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="IPTC Scene Code"
+        name="jcr:content/metadata/Iptc4xmpCore:Scene"/>
+    <sublocation
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Sublocation"
+        name="jcr:content/metadata/Iptc4xmpCore:Location"/>
+    <iso_country_code
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="ISO Country Code"
+        name="jcr:content/metadata/Iptc4xmpCore:CountryCode"/>
+    <headline
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Headline"
+        name="jcr:content/metadata/photoshop:Headline"/>
+    <iptc_subject_code
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="IPTC Subject Code"
+        name="jcr:content/metadata/Iptc4xmpCore:SubjectCode"/>
+    <description_writer
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Description Writer"
+        name="jcr:content/metadata/photoshop:CaptionWriter"/>
+    <job_identifier
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Job Identifier"
+        name="jcr:content/metadata/photoshop:TransmissionReference"/>
+    <instructions
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Instructions"
+        name="jcr:content/metadata/photoshop:Instructions"/>
+    <credit_line
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Credit Line"
+        name="jcr:content/metadata/photoshop:Credit"/>
+    <source
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Source"
+        name="jcr:content/metadata/photoshop:Source"/>
+    <name_of_featuredorganisation
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Name of Featured Organisation"
+        name="jcr:content/metadata/Iptc4xmpExt:OrganisationInImageName"/>
+    <code_of_featuredorganisation
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Code of Featured Organisation"
+        name="jcr:content/metadata/Iptc4xmpExt:OrganisationInImageCode"/>
+    <additional_modelinfo
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Additional Model Info"
+        name="jcr:content/metadata/Iptc4xmpExt:AddlModelInfo"/>
+    <model_age
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Model Age"
+        name="jcr:content/metadata/Iptc4xmpExt:ModelAge"/>
+    <minor_model_imagedisclosure
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Minor Model Image Disclosure"
+        name="jcr:content/metadata/plus:MinorModelAgeDisclosure"/>
+    <model_release_status
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Model Release Status"
+        name="jcr:content/metadata/plus:ModelReleaseStatus"/>
+    <model_release_identifier
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Model Release Identifier"
+        name="jcr:content/metadata/plus:ModelReleaseID"/>
+    <supplier_s_imageid
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Supplier's Image ID"
+        name="jcr:content/metadata/plus:ImageSupplierImageID"/>
+    <max_available_width
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Max available Width"
+        name="jcr:content/metadata/Iptc4xmpExt:MaxAvailWidth"/>
+    <max_available_height
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Max. available Height"
+        name="jcr:content/metadata/Iptc4xmpExt:MaxAvailHeight"/>
+    <digital_source_type
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Digital Source Type"
+        name="jcr:content/metadata/Iptc4xmpExt:DigitalSourceType"/>
+    <property_releasestatus
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Property Release Status"
+        name="jcr:content/metadata/plus:PropertyReleaseStatus"/>
+    <property_releaseidentifier
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Property Release Identifier"
+        name="jcr:content/metadata/plus:PropertyReleaseID"/>
+    <make
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Make"
+        name="jcr:content/metadata/tiff:Make"/>
+    <model
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Model"
+        name="jcr:content/metadata/tiff:Model"/>
+    <owner
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Owner"
+        name="jcr:content/metadata/psAux:OwnerName"/>
+    <lens
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Lens"
+        name="jcr:content/metadata/psAux:Lens"/>
+    <focal_length_in_mm
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Focal Length (in mm)"
+        name="jcr:content/metadata/exif:FocalLength"/>
+    <focal_length_in_35mm
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Focal Length (in 35 mm)"
+        name="jcr:content/metadata/exif:FocalLengthIn35mmFilm"/>
+    <exposure_time_secs
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Exposure Time (secs)"
+        name="jcr:content/metadata/exif:ExposureTime"/>
+    <f-number
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="F-Number"
+        name="jcr:content/metadata/exif:FNumber"/>
+    <iso
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="ISO"
+        name="jcr:content/metadata/exifEX:PhotographicSensitivity"/>
+    <orientation
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Orientation"
+        name="jcr:content/metadata/tiff:Orientation"/>
+    <resolution_pixelsperinch
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Resolution (Pixels per Inch)"
+        name="jcr:content/metadata/tiff:XResolution"/>
+    <flash
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Flash"
+        name="jcr:content/metadata/exif:Flash/exif:Fired"/>
+    <width
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Width"
+        name="jcr:content/metadata/tiff:ImageWidth"/>
+    <height
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Height"
+        name="jcr:content/metadata/tiff:ImageLength"/>
+    <product_references
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Product References"
+        name="jcr:content/metadata/dq:productReference"/>
+    <location
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Location"
+        name="jcr:content/metadata/Iptc4xmpExt:LocationShown"/>
+    <pdf_title
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Pdf Title"
+        name="jcr:content/metadata/pdf:Title"/>
+    <size
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Size"
+        name="jcr:content/metadata/size"/>
+    <duration_seconds
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Duration (seconds)"
+        name="jcr:content/metadata/videoDuration"/>
+    <total_bit_rate_kbps
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Total Bit Rate (kbps)"
+        name="jcr:content/metadata/bitrate"/>
+    <video_codec
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Video Codec"
+        name="jcr:content/metadata/videoCodec"/>
+    <video_bit_rate_kbps
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Video Bit Rate (kbps)"
+        name="jcr:content/metadata/videoBitrate"/>
+    <video_frame_ratefps
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Video Frame Rate (fps)"
+        name="jcr:content/metadata/frameRate"/>
+    <audio_codec
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Audio Codec"
+        name="jcr:content/metadata/audioCodec"/>
+    <audio_bit_rate_kbps
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Audio Bit Rate (kbps)"
+        name="jcr:content/metadata/audioBitrate"/>
+    <audio_sample_ratehz
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Audio Sample Rate (hz)"
+        name="jcr:content/metadata/audioSampleRate"/>
+    <number_audio_channels
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Number Audio Channels"
+        name="jcr:content/metadata/audioChannels"/>
+    <youtube_category
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="YouTube Category"
+        name="jcr:content/metadata/dam:youtube_category"/>
+    <youtube_privacy
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="YouTube Privacy"
+        name="jcr:content/metadata/dam:youtube_privacy"/>
+    <youtube_url_list
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="YouTube URL List"
+        name="jcr:content/metadata/dam:youtube_urls"/>
+    <last_modificationdate
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Last Modification Date"
+        name="jcr:content/jcr:lastModified"/>
+    <last_publish_date
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Last Publish Date"
+        name="jcr:content/cq:lastReplicated"/>
+    <author_name
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Author Name"
+        name="jcr:content/metadata/author"/>
+    <status
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Status"
+        name="jcr:content/metadata/status"/>
+    <configuration_container
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Configuration Container"
+        name="jcr:content/cq:conf"/>
+    <clientlib_location
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Clientlib Location"
+        name="jcr:content/metadata/clientlibRef"/>
+    <clientlib_categoryname
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Clientlib Category Name"
+        name="jcr:content/metadata/clientlibCategory"/>
+    <publish_date
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Publish Date"
+        name="jcr:content/metadata/activationDate"/>
+    <unpublish_date
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Unpublish Date"
+        name="jcr:content/metadata/expiryDate"/>
+    <model_refresh
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Model Refresh"
+        name="jcr:content/metadata/formModelChanged"/>
+    <select_theme
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Select Theme"
+        name="jcr:content/metadata/themeRef"/>
+    <render_format
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Render Format"
+        name="jcr:content/metadata/allowedRenderFormat"/>
+    <hidden
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Hidden"
+        name="jcr:content/metadata/invokeWritebackWorkflow"/>
+    <submit_url
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Submit URL"
+        name="jcr:content/metadata/submitUrl"/>
+    <html_render_profile
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="HTML Render Profile"
+        name="jcr:content/metadata/profile"/>
+    <pdf_render_profile
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="PDF Render Profile"
+        name="jcr:content/metadata/process"/>
+    <prefill_service
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Prefill Service"
+        name="jcr:content/metadata/prefillService"/>
+    <publish_on_time
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Publish On Time"
+        name="jcr:content/metadata/activationDate"/>
+    <form_data_model
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Form Data Model"
+        name="jcr:content/schemaRef"/>
+    <post_process_type
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Post Process Type"
+        name="jcr:content/ccm:postProcessType"/>
+    <select_post_process
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Select Post Process"
+        name="jcr:content/ccm:postProcess"/>
+    <attachment_path
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Attachment Path"
+        name="jcr:content/ccm:attachmentsFolderPath"/>
+    <layout_path
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Layout Path"
+        name="jcr:content/ccm:layoutPath"/>
+    <pdf_path
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="PDF Path"
+        name="jcr:content/ccm:pdfPath"/>
+    <print_data_path
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Print Data Path"
+        name="jcr:content/ccm:printDataPath"/>
+    <web_data_path
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Web Data Path"
+        name="jcr:content/ccm:webDataPath"/>
+    <adobe_target
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Adobe Target"
+        name="jcr:content/metadata/cq:cloudserviceconfigs"/>
+    <print_template_
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Print Template *"
+        name="channels/print/jcr:content/ccm:form"/>
+    <interactive_communicationwebtemplate
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Interactive Communication Web Template *"
+        name="channels/web/jcr:content/cq:template"/>
+    <select_theme_
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Select Theme *"
+        name="channels/web/jcr:content/guideContainer/themeRef"/>
+    <social_id
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social ID"
+        name="jcr:content/metadata/livefyreId"/>
+    <livefyre_contentid
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Livefyre Content ID"
+        name="jcr:content/metadata/livefyreContentId"/>
+    <social_source
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social Source"
+        name="jcr:content/metadata/livefyreSource"/>
+    <social_avatar
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social Avatar"
+        name="jcr:content/metadata/livefyreUserAvatar"/>
+    <social_user_name
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social User Name"
+        name="jcr:content/metadata/livefyreUsername"/>
+    <social_user_profile
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social User Profile"
+        name="jcr:content/metadata/livefyreUserProfile"/>
+    <social_timestamp
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social Timestamp"
+        name="jcr:content/metadata/livefyreTimestamp"/>
+    <social_like_count
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social Like Count"
+        name="jcr:content/metadata/livefyreLikesCount"/>
+    <social_comment_count
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Social Comment Count"
+        name="jcr:content/metadata/livefyreCommentCount"/>
+    <on_time_mm-dd-yyyyhhmm
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="On Time (MM-DD-YYYY HH:mm)"
+        name="jcr:content/onTime"/>
+    <off_time_mm-dd-yyyyhhmm
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Off Time (MM-DD-YYYY HH:mm)"
+        name="jcr:content/offTime"/>
+    <expires_mm-dd-yyyyhhmm
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Expires (MM-DD-YYYY HH:mm)"
+        name="jcr:content/metadata/prism:expirationDate"/>
+    <date_created_yyyy-mm-ddhhmm
+        jcr:primaryType="nt:unstructured"
+        fieldLabel="Date Created (YYYY-MM-DD HH:mm)"
+        name="jcr:content/metadata/photoshop:DateCreated"/>
+</jcr:root>

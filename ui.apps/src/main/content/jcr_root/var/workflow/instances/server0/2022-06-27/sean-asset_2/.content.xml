@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Workflow"
+    jcr:uuid="8e67a4ba-a840-49e0-8824-0c43567dec7b"
+    endTime="{Date}2022-06-27T19:24:29.357-07:00"
+    initiator="workflow-service"
+    modelId="/var/workflow/models/sean-asset"
+    modelVersion="1.2"
+    parentInstanceId="none"
+    startTime="{Date}2022-06-27T18:07:29.025-07:00"
+    status="ABORTED">
+    <data jcr:primaryType="cq:WorkflowData">
+        <metaData
+            cq:userMetaDataCustomPersistenceEnabled="{Boolean}false"
+            cq:waitingToAdvance="{Boolean}true"
+            jcr:primaryType="nt:unstructured"
+            launcherId="/conf/global/settings/workflow/launcher/config/-1543140596"
+            userId="admin"/>
+        <payload
+            jcr:primaryType="cq:Payload"
+            path="{Path}/content/dam/mysite/puppy-development.jpeg"/>
+    </data>
+    <history jcr:primaryType="nt:unstructured">
+        <_x0034_8670518-eb8f-4dec-8bb2-1782b0df11bb
+            jcr:primaryType="nt:unstructured"
+            date="{Date}2022-06-27T18:07:29.325-07:00"
+            event="NodeTransition"
+            message=""
+            user="workflow-service">
+            <workItem
+                jcr:primaryType="cq:WorkItem"
+                assignee="system"
+                endTime="{Date}2022-06-27T18:07:29.325-07:00"
+                nodeId="node0"
+                startTime="{Date}2022-06-27T18:07:29.108-07:00"
+                workflowId="/var/workflow/instances/server0/2022-06-27/sean-asset_2">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    archived="{Boolean}true"/>
+            </workItem>
+        </_x0034_8670518-eb8f-4dec-8bb2-1782b0df11bb>
+        <c439c04d-7c84-444b-9f03-88e0ef38462c
+            jcr:primaryType="nt:unstructured"
+            date="{Date}2022-06-27T19:24:29.250-07:00"
+            event="WorkflowAborted"
+            message=""
+            user="admin">
+            <workItem
+                jcr:primaryType="cq:WorkItem"
+                _title="Step 1"
+                assignee="workflow-service"
+                contentPath="/content/dam/mysite/puppy-development.jpeg"
+                createdBy="workflow-service"
+                description="Description of step 1"
+                endTime="{Date}2022-06-27T19:24:29.249-07:00"
+                lastModified="{Date}2022-06-27T18:07:29.329-07:00"
+                nodeId="node1"
+                priority="{Long}0"
+                progressBeginTime="{Date}2022-06-27T18:07:29.327-07:00"
+                rank="{Long}0"
+                startTime="{Date}2022-06-27T18:07:29.327-07:00"
+                status="COMPLETE"
+                wfModelId="/var/workflow/models/sean-asset"
+                workflowId="/var/workflow/instances/server0/2022-06-27/sean-asset_2">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    archived="{Boolean}true"
+                    historyEntryPath="/var/workflow/instances/server0/2022-06-27/sean-asset_2/history/48670518-eb8f-4dec-8bb2-1782b0df11bb"/>
+            </workItem>
+        </c439c04d-7c84-444b-9f03-88e0ef38462c>
+    </history>
+    <metaData
+        jcr:primaryType="nt:unstructured"
+        _charset_="utf-8"/>
+    <workItems jcr:primaryType="nt:unstructured"/>
+</jcr:root>

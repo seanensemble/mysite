@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Workflow"
+    jcr:uuid="f24142ff-d7d2-45ab-a340-dd90411cdd81"
+    endTime="{Date}2022-06-28T10:38:26.207-07:00"
+    initiator="admin"
+    modelId="/var/workflow/models/sean/sean-custom-wf"
+    modelVersion="1.3"
+    parentInstanceId="none"
+    startTime="{Date}2022-06-28T10:38:25.703-07:00"
+    status="COMPLETED">
+    <data jcr:primaryType="cq:WorkflowData">
+        <metaData
+            cq:userMetaDataCustomPersistenceEnabled="{Boolean}false"
+            cq:waitingToAdvance="{Boolean}false"
+            jcr:primaryType="nt:unstructured"
+            currentJobs=""
+            packageTitle=""
+            userId="admin"
+            versions="\{&quot;/content/mysite/us/en/workflow-sean/jcr:content&quot;:&quot;1.3&quot;}"
+            workflowTitle="Create Version Sean"/>
+        <payload
+            jcr:primaryType="cq:Payload"
+            path="{Path}/content/mysite/us/en/workflow-sean"/>
+    </data>
+    <history jcr:primaryType="nt:unstructured">
+        <c676f53c-5eb3-4f1a-8dd2-1d54d7c4acd6
+            jcr:primaryType="nt:unstructured"
+            date="{Date}2022-06-28T10:38:25.800-07:00"
+            event="WorkflowCompleted"
+            message=""
+            user="admin">
+            <workItem
+                jcr:primaryType="cq:WorkItem"
+                assignee="system"
+                endTime="{Date}2022-06-28T10:38:25.800-07:00"
+                nodeId="node0"
+                startTime="{Date}2022-06-28T10:38:25.795-07:00"
+                workflowId="/var/workflow/instances/server0/2022-06-27/sean-custom-wf_17">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    archived="{Boolean}true"/>
+            </workItem>
+        </c676f53c-5eb3-4f1a-8dd2-1d54d7c4acd6>
+        <f2db6f19-7cbc-45e5-bcf0-fbd6239a4d38
+            jcr:primaryType="nt:unstructured"
+            date="{Date}2022-06-28T10:38:26.203-07:00"
+            event="WorkflowCompleted"
+            message=""
+            user="workflow-service">
+            <workItem
+                jcr:primaryType="cq:WorkItem"
+                assignee="system"
+                endTime="{Date}2022-06-28T10:38:26.203-07:00"
+                nodeId="node1"
+                startTime="{Date}2022-06-28T10:38:25.954-07:00"
+                workflowId="/var/workflow/instances/server0/2022-06-27/sean-custom-wf_17">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    archived="{Boolean}true"
+                    historyEntryPath="/var/workflow/instances/server0/2022-06-27/sean-custom-wf_17/history/c676f53c-5eb3-4f1a-8dd2-1d54d7c4acd6"/>
+            </workItem>
+        </f2db6f19-7cbc-45e5-bcf0-fbd6239a4d38>
+    </history>
+    <metaData
+        cq:userMetaDataCustomPersistenceEnabled="{Boolean}false"
+        jcr:primaryType="nt:unstructured"
+        currentJobs=""
+        packageTitle=""
+        userId="admin"
+        versions="\{&quot;/content/mysite/us/en/workflow-sean/jcr:content&quot;:&quot;1.3&quot;}"
+        workflowTitle="Create Version Sean"/>
+    <workItems jcr:primaryType="nt:unstructured"/>
+</jcr:root>

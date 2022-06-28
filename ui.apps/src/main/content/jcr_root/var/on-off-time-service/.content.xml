@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="sling:Folder"
+    on-off-check-point="{Date}2022-07-08T17:08:06.351-07:00"
+    purged-old-topic-jobs="{Boolean}true"
+    updated-uuid-in-jobs="{Boolean}true"/>

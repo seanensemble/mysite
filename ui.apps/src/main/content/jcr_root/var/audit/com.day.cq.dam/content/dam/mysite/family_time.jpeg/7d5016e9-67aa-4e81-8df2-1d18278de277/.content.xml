@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    cq:category="com/day/cq/dam"
+    cq:path="/content/dam/mysite/family_time.jpeg"
+    cq:time="{Date}2022-06-24T18:57:54.156-07:00"
+    cq:type="ASSET_CREATED"
+    cq:userid="admin"
+    jcr:primaryType="cq:AuditEvent"/>

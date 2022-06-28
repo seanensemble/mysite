@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:Folder"
+    sling:resourceType="sling:Folder"
+    creationDate="{Long}1656407418566"
+    eta="{Long}0"
+    finishedDate="{Long}1656407419882"
+    id="RevisionCleanupTask"
+    job.topics="com/adobe/granite/maintenance/job/RevisionCleanupTask"
+    result.message="Revision GC: Skipped"
+    result.state="SUCCEEDED"
+    startDate="{Long}1656407418566"
+    state="SUCCEEDED"
+    steps="{Long}-1"
+    steps.current="{Long}0"
+    stopped="{Boolean}false"/>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:Folder"
+    sling:resourceType="sling:Folder"
+    endpoints="http://[2604:3d08:4980:a900:0:0:0:c631%en0]:4502/,http://[2604:3d08:4980:a900:381a:14ad:c0c9:8069%en0]:4502/,http://[2604:3d08:4980:a900:87c:d4ea:6367:621c%en0]:4502/,http://[2604:3d08:4980:a900:0:0:0:8590%en0]:4502/,http://10.0.0.195:4502/"
+    leaderElectionId="1_0000001656452889218_c9932d06-111f-43db-bb9c-b5b47567aace"
+    leaderElectionIdCreatedAt="{Date}2022-06-28T14:48:09.224-07:00"
+    runtimeId="ac99abf4-3c28-4623-a59b-c2f4edd81fc3"
+    slingHomePath="/Users/seanl/VSABLE/_WORK_code/AEM/Author/Author/crx-quickstart"/>

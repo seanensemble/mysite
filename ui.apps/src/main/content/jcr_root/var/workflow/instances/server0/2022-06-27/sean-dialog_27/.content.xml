@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Workflow"
+    jcr:uuid="4ddc936f-9851-4092-aee3-eb853c88a911"
+    endTime="{Date}2022-06-28T14:39:42.094-07:00"
+    initiator="admin"
+    modelId="/var/workflow/models/sean-dialog"
+    modelVersion="1.3"
+    parentInstanceId="none"
+    startTime="{Date}2022-06-28T14:39:41.861-07:00"
+    status="COMPLETED">
+    <data jcr:primaryType="cq:WorkflowData">
+        <metaData
+            cq:userMetaDataCustomPersistenceEnabled="{Boolean}false"
+            cq:waitingToAdvance="{Boolean}false"
+            jcr:primaryType="nt:unstructured"
+            currentJobs=""
+            userId="admin"
+            workflowTitle="zzzupdated"/>
+        <payload
+            jcr:primaryType="cq:Payload"
+            path="{Path}/content/mysite/us/en/workflow-sean"/>
+    </data>
+    <history jcr:primaryType="nt:unstructured">
+        <_x0033_902090e-0041-4347-a9de-e338aaee23ba
+            jcr:primaryType="nt:unstructured"
+            date="{Date}2022-06-28T14:39:41.952-07:00"
+            event="WorkflowCompleted"
+            message=""
+            user="admin">
+            <workItem
+                jcr:primaryType="cq:WorkItem"
+                assignee="system"
+                endTime="{Date}2022-06-28T14:39:41.952-07:00"
+                nodeId="node0"
+                startTime="{Date}2022-06-28T14:39:41.939-07:00"
+                workflowId="/var/workflow/instances/server0/2022-06-27/sean-dialog_27">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    archived="{Boolean}true"/>
+            </workItem>
+        </_x0033_902090e-0041-4347-a9de-e338aaee23ba>
+        <_x0037_1f59f8c-2282-4f90-958e-62fb92c22572
+            jcr:primaryType="nt:unstructured"
+            date="{Date}2022-06-28T14:39:42.092-07:00"
+            event="WorkflowCompleted"
+            message=""
+            user="workflow-service">
+            <workItem
+                jcr:primaryType="cq:WorkItem"
+                assignee="system"
+                endTime="{Date}2022-06-28T14:39:42.092-07:00"
+                nodeId="node1"
+                startTime="{Date}2022-06-28T14:39:42.083-07:00"
+                workflowId="/var/workflow/instances/server0/2022-06-27/sean-dialog_27">
+                <metaData
+                    jcr:primaryType="nt:unstructured"
+                    archived="{Boolean}true"
+                    historyEntryPath="/var/workflow/instances/server0/2022-06-27/sean-dialog_27/history/3902090e-0041-4347-a9de-e338aaee23ba"/>
+            </workItem>
+        </_x0037_1f59f8c-2282-4f90-958e-62fb92c22572>
+    </history>
+    <metaData
+        cq:userMetaDataCustomPersistenceEnabled="{Boolean}false"
+        jcr:primaryType="nt:unstructured"
+        currentJobs=""
+        userId="admin"
+        workflowTitle="zzzupdated"/>
+    <workItems jcr:primaryType="nt:unstructured"/>
+</jcr:root>

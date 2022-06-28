@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    cq:category="com/day/cq/wcm/core/page"
+    cq:path="/content/mysite/us/en/workflow-sean"
+    cq:properties="{Binary}"
+    cq:time="{Date}2022-06-28T10:38:26.128-07:00"
+    cq:type="VersionCreated"
+    cq:userid="workflow-process-service"
+    jcr:primaryType="cq:AuditEvent"
+    path="/content/mysite/us/en/workflow-sean"
+    type="VersionCreated"
+    userId="workflow-process-service"
+    versionId="1.3"/>

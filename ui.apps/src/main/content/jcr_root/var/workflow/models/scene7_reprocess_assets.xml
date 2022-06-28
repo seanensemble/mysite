@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:isCheckedOut="{Boolean}false"
+    jcr:primaryType="cq:WorkflowModel"
+    jcr:uuid="882f058e-aec1-466c-a416-961fdc6ebfed"
+    sling:resourceType="cq/workflow/components/model"
+    description="This workflow reprocesses the assets within the selected folder."
+    title="Dynamic Media: Reprocess Assets">
+    <metaData
+        cq:lastModified="{Long}1562595352781"
+        cq:lastModifiedBy="admin"
+        jcr:primaryType="nt:unstructured"
+        multiResourceSupport="true"
+        tags="wcm,dam"/>
+    <nodes jcr:primaryType="nt:unstructured">
+        <node0
+            jcr:primaryType="cq:WorkflowNode"
+            title="Start"
+            type="START">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node0>
+        <node1
+            jcr:primaryType="cq:WorkflowNode"
+            description="Reprocess the assets uploaded to configured remote Dynamic Media service for Dynamic Media delivery. "
+            title="Dynamic Media:Reprocess Assets"
+            type="EXTERNAL_PROCESS">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                advanceOnTimeout="true"
+                EXTERNAL_PROCESS="com.day.cq.dam.scene7.impl.process.Scene7ReprocessAssets"
+                period="30"
+                PROCESS_AUTO_ADVANCE="true"
+                reprocess-batch-size="50"
+                timeout="3600"/>
+        </node1>
+        <node2
+            jcr:primaryType="cq:WorkflowNode"
+            description="Batch Upload assets to configured remote Dynamic Media service for Dynamic Media delivery"
+            title="Dynamic Media"
+            type="EXTERNAL_PROCESS">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                advanceOnTimeout="true"
+                EXTERNAL_PROCESS="com.day.cq.dam.scene7.impl.process.Scene7BatchUploadProcess"
+                period="30"
+                PROCESS_AUTO_ADVANCE="true"
+                timeout="3600"/>
+        </node2>
+        <node3
+            jcr:primaryType="cq:WorkflowNode"
+            description="Upload assets to configured remote Dynamic Media service for Dynamic Media delivery."
+            title="Dynamic Media Direct Binary Upload"
+            type="EXTERNAL_PROCESS">
+            <metaData
+                jcr:primaryType="nt:unstructured"
+                advanceOnTimeout="true"
+                EXTERNAL_PROCESS="com.day.cq.dam.scene7.impl.process.DirectBinaryAccessS7UplProcess"
+                period="30"
+                PROCESS_AUTO_ADVANCE="true"
+                timeout="3600"/>
+        </node3>
+        <node4
+            jcr:primaryType="cq:WorkflowNode"
+            title="End"
+            type="END">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node4>
+    </nodes>
+    <transitions jcr:primaryType="nt:unstructured">
+        <node0_x0023_node1
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node0"
+            rule=""
+            to="node1">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node0_x0023_node1>
+        <node1_x0023_node2
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node1"
+            rule=""
+            to="node2">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node1_x0023_node2>
+        <node2_x0023_node3
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node2"
+            rule=""
+            to="node3">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node2_x0023_node3>
+        <node3_x0023_node4
+            jcr:primaryType="cq:WorkflowTransition"
+            from="node3"
+            to="node4">
+            <metaData jcr:primaryType="nt:unstructured"/>
+        </node3_x0023_node4>
+    </transitions>
+</jcr:root>
