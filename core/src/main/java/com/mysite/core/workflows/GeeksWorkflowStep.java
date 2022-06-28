@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Node;
 import javax.jcr.Session;
+import java.util.Iterator;
+import java.util.Set;
 
 @Component(
         service = WorkflowProcess.class,
@@ -30,10 +32,12 @@ import javax.jcr.Session;
         }
 )
 public class GeeksWorkflowStep implements WorkflowProcess {
-    private static final Logger log = LoggerFactory.getLogger(GeeksWorkflowStep.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GeeksWorkflowStep.class);
 
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap processArguments) {
+        LOG.info("\n ===================================");
+
         try {
             WorkflowData workflowData = workItem.getWorkflowData();
             if (workflowData.getPayloadType().equals("JCR_PATH")) {
@@ -41,20 +45,33 @@ public class GeeksWorkflowStep implements WorkflowProcess {
                 String path = workflowData.getPayload().toString() + "/jcr:content";
                 Node node = (Node) session.getItem(path);
 
-                String[] processArgs = processArguments.get("PROCESS_ARGS", "string").toString().split(",");
+                String[] processArgs = processArguments.get("PROCESS_ARGS", "string").toString().split(","); //all the inputs splitted by "," will be inputted here.
+
+                MetaDataMap wfd = workItem.getWorkflow().getWorkflowData().getMetaDataMap();
 
                 for (String wfArgs : processArgs) {
                     String[] args = wfArgs.split(":");
                     String prop = args[0];
                     String value = args[1];
+
+                    LOG.info(" wfArgssssss args[0] {}", args[0]);
+                    LOG.info(" wfArgssssss args[1] {}", args[1]);
                     if(node != null) {
-                        node.setProperty(prop, value);
+                        wfd.put(prop, value); // Passing it to the next step execution, including "title" attribute and the process properties.
+                        node.setProperty(prop, value); // taking the properties and add to JCR contents.
                     }
+                }
+                Set<String> keyset = wfd.keySet();
+                Iterator<String> i = keyset.iterator();
+                while (i.hasNext()) {
+                    String key = i.next();
+                    LOG.info("\n ITEM key - {}, value - {}", key, wfd.get(key));
                 }
             }
         }
         catch( Exception e) {
-            System.out.println("exception");
+            LOG.info(" EXCEPTION CAUGHT ____");
+            LOG.info(e.getMessage());
         }
     }
 }
