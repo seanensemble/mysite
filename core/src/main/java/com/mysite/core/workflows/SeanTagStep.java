@@ -13,6 +13,7 @@ import javax.jcr.Node;
 import javax.jcr.Session;
 
 
+
 @Component(
         service = WorkflowProcess.class,
         property = {
@@ -24,6 +25,10 @@ import javax.jcr.Session;
 public class SeanTagStep implements WorkflowProcess {
     private static final Logger LOG = LoggerFactory.getLogger(SeanTagStep.class);
 
+    private static final String JCR_CONTENT = "/jcr:content";
+    private static final String JCR_CONTENT_METADATA = "/jcr:content/metadata";
+    private static final String JCR_PATH = "JCR_PATH";
+
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap processArguments) {
 
@@ -31,7 +36,7 @@ public class SeanTagStep implements WorkflowProcess {
 
             WorkflowData workflowData = workItem.getWorkflowData();
 
-            if (workflowData.getPayloadType().equals("JCR_PATH")) {
+            if (workflowData.getPayloadType().equals(JCR_PATH)) {
                 Session session = workflowSession.adaptTo(Session.class);
                 String path;
 
@@ -41,10 +46,11 @@ public class SeanTagStep implements WorkflowProcess {
 
                 switch(payloadType) {
                     case "cq:Page":
-                        path = workflowData.getPayload().toString() + "/jcr:content";
+//                        path = workflowData.getPayload().toString() + "/jcr:content";
+                        path = workflowData.getPayload().toString() + JCR_CONTENT;
                         break;
                     case "dam:Asset":
-                        path = workflowData.getPayload().toString() + "/jcr:content/metadata";
+                        path = workflowData.getPayload().toString() + JCR_CONTENT_METADATA;
                         break;
                     default:
                         path = workflowData.getPayload().toString(); ///content/forms/af
