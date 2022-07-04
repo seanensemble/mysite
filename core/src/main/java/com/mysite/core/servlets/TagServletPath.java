@@ -45,6 +45,9 @@ public class TagServletPath extends SlingAllMethodsServlet {
 
         List<String> serviceResult = new ArrayList<String>(){};
         List<String> inputTags = new ArrayList<String>(){};
+
+        String searchpath = "/notexisting";
+
         try {
             LOG.info("------------------------STARTEDGeeksPathTypeServletPOST-------------------------");
             List<RequestParameter> requestParameterList=req.getRequestParameterList();
@@ -54,6 +57,11 @@ public class TagServletPath extends SlingAllMethodsServlet {
                 if(requestParameter.getName().contains("tagbox")) {
                     inputTags.add(requestParameter.getString());
                 }
+
+                if(requestParameter.getName().equals("spath")) {
+                    searchpath = requestParameter.getString();
+                    LOG.info("spath___TagServletPath {}", searchpath);
+                }
             }
 
             LOG.info("what_is_the_size_of_inputTags? : {}", inputTags.size());
@@ -62,9 +70,9 @@ public class TagServletPath extends SlingAllMethodsServlet {
                 LOG.info(result);
             };
 
-            String searchPath = "/content/dam/mysite";
+//            String searchPath = "/content/dam/mysite";
 
-            serviceResult = tagService.searchResult(inputTags, searchPath);
+            serviceResult = tagService.searchResult(inputTags, searchpath);
 
             for (String result : serviceResult) {
                 LOG.info("result________TagServletPath");

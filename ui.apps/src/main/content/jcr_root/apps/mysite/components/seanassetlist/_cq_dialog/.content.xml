@@ -7,13 +7,15 @@
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
         <items jcr:primaryType="nt:unstructured">
-
-            <texst
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                fieldLabel="Texst"
-                name="./texst"/>
-
+            <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                <texst
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                    fieldLabel="Texst"
+                    name="./texst"/>
+            </column>
             <multifieldwithmap
                 jcr:primaryType="nt:unstructured"
                 jcr:title="Multifield With Map"

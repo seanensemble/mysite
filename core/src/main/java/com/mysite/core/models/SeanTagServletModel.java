@@ -60,7 +60,7 @@ public class SeanTagServletModel {
 
 
     @ValueMapValue
-    private String texst;
+    private String searchpath;
 
     @PostConstruct
     protected void init() {
@@ -70,11 +70,11 @@ public class SeanTagServletModel {
             .map(Page::getPath).orElse("");
     }
 
-    public String getTexst() {
+    public String getSearchpath() {
 
-        LOG.info("SeanTagServletModel_______getTexst_______SeanTagServletModel");
+        LOG.info("SeanTagServletModel_______getSearchpath_______SeanTagServletModel");
 
-        return texst;
+        return searchpath;
     }
 
 

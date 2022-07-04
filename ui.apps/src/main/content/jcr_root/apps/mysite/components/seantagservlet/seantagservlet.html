@@ -3,17 +3,18 @@
 <div data-cmp-is="seantagservlet">
     <h1>Sean tag servlet</h1>
 
-    <div class="cmp-helloworld__item" data-sly-use.model="com.mysite.core.models.SeanAssetListModel">
-        <h3>texst SeanAssetListModel: ${model.texst}</h3>
-    </div>
-
     <div class="cmp-helloworld__item" data-sly-use.model="com.mysite.core.models.SeanTagServletModel">
 
-        <h3>texst SeanTagServletModel: ${model.texst}</h3>
+        <h3>searchpath SeanTagServletModel: ${model.searchpath}</h3>
 
-        <a href="http://localhost:4502/content/mysite/us/en/servlet-page/jcr:content.test.txt${model.svltags}" target="_blank">Click to trigger servlet</a>
+        <a href="http://localhost:4502/content/mysite/us/en/servlet-page/jcr:content.test.txt${model.svltags}&path=${model.searchpath}" target="_blank">Click to trigger servlet</a>
 
         <form method="POST" enctype="multipart/form-data" action="/random/nonexisiting/page">
+            <div>
+                <input type="text" name="spath" id="spath">
+                <label for="spath">searchpath</label>
+            </div>
+
             <div>
                 <h3>Check the tag(s)</h3>
                 <p data-sly-repeat="${model.nonCqProp}">

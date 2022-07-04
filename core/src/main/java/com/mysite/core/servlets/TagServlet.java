@@ -51,10 +51,19 @@ public class TagServlet extends SlingAllMethodsServlet {
         String rpath = resource.getPath().toString();
         LOG.info("Resource path is: {}", rpath); // Resource path is: /content/mysite/us/en/servlet-page/jcr:content
 
+        List<String> tagList=new ArrayList<String>();
+
         String[] tagParams = req.getParameterValues("svltags");
+
+        String path = req.getParameter("path");
+
         for(String tag: tagParams) {
-            LOG.info("tag param looped is: {}", tag);
+            LOG.info("tag111 param looped is: {}", tag);
+            tagList.add(tag);
         }
+
+        LOG.info("pathpathpathpathpathpath111 {}", path);
+
         // tag param looped is: tagone
         // tag param looped is: tagtwo
 
@@ -62,16 +71,12 @@ public class TagServlet extends SlingAllMethodsServlet {
         LOG.info("pathInfo__pathInfo__pathInfo");
         LOG.info(pathInfo); // /content/mysite/us/en/servlet-page/jcr:content.geeks.txt
 
-        List<String> tagList=new ArrayList<String>(){{
-            add("tagone");
-        }};
-
-        String searchPath = "/content/dam/mysite";
+//        String searchPath = "/content/dam/mysite";
 
         LOG.info("tagService.getClass().toString(): {}");
         LOG.info(tagService.getClass().toString());
 
-        List<String> serviceResult = tagService.searchResult(tagList, searchPath);
+        List<String> serviceResult = tagService.searchResult(tagList, path);
 
         for (String result : serviceResult) {
             LOG.info("result________");

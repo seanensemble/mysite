@@ -84,38 +84,19 @@ public class TagServiceImpl implements TagService {
         Map<String,String> queryMap=new HashMap<>();
 //        queryMap.put("type","cq:Asset");
         queryMap.put("type","dam:Asset");
-        queryMap.put("path","/content/dam/mysite");
-        queryMap.put("property.and","true");
+        queryMap.put("path",searchPath);
+        queryMap.put("property.and","false");
         queryMap.put("property", "jcr:content/metadata/cq:tags");
 
-//        queryMap.put("property.1_value","seantags:tagone");
-//        queryMap.put("property.2_value","%tagtwo%");
-
-//        queryMap.put("path", searchPath);
-//        queryMap.put("tagid", tagId);
-
-        System.out.println("");
-        System.out.println("");
-
-        System.out.println("tagId.size()");
-        System.out.println(tagId.size());
 
         for (int i = 1; i <= tagId.size(); i++) {
-            System.out.println("new loooooooop");
-            System.out.println(i);
-            System.out.println(tagId.get(i-1)); // Cannot access the iterator
-            System.out.println("above for value and i");
+
             String prop = String.format("property.%s_value", String.valueOf(i));
             String tagInclude = String.format("%%%s%%", tagId.get(i-1));
-            System.out.println("prop...............");
-            System.out.println(prop);
-            System.out.println("tagInclude...............");
-            System.out.println(tagInclude);
+
             queryMap.put(prop,tagInclude);
         }
 
-        System.out.println("");
-        System.out.println("");
 
         queryMap.put("property.operation","like");
 
@@ -130,8 +111,7 @@ public class TagServiceImpl implements TagService {
         List<String> paths = new ArrayList();
         ResourceResolver resourceResolver = null;
         try {
-            System.out.println("\n tryyyyyyyy");
-
+            LOG.info("searchResult_searchResult_searchPath {}", searchPath);
             resourceResolver = ResolverUtil.newResolver(resourceResolverFactory);
             final Session session = resourceResolver.adaptTo(Session.class);
             Query query = queryBuilder.createQuery(PredicateGroup.create(createTextSearchQuery(tagId,searchPath)), session);
@@ -140,8 +120,6 @@ public class TagServiceImpl implements TagService {
             Iterator<Node> nodeList = rawResults.getNodes();
 
             hits = query.getResult().getHits();
-            System.out.println("aaaa hitsize");
-            System.out.println(hits.size());
 
             for (Hit temp: hits) {
                 System.out.println("");
