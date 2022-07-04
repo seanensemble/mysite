@@ -1,3 +1,5 @@
+// /Users/seanl/VSABLE/_WORK_code/AEM/Maven/mysite/core/src/main/java/com/mysite/core/services/impl/TagServiceImpl.java
+
 package com.mysite.core.services.impl;
 
 import com.mysite.core.services.TagService;
@@ -11,6 +13,7 @@ import com.day.cq.search.result.SearchResult;
 import com.day.cq.wcm.api.Page;
 
 import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 
@@ -26,6 +29,7 @@ import org.osgi.service.component.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.util.HashMap;
@@ -78,7 +82,8 @@ public class TagServiceImpl implements TagService {
 
     public Map<String,String> createTextSearchQuery(List<String> tagId, String searchPath){
         Map<String,String> queryMap=new HashMap<>();
-        queryMap.put("type","cq:Asset");
+//        queryMap.put("type","cq:Asset");
+        queryMap.put("type","dam:Asset");
         queryMap.put("path","/content/dam/mysite");
         queryMap.put("property.and","true");
         queryMap.put("property", "jcr:content/metadata/cq:tags");
@@ -131,6 +136,9 @@ public class TagServiceImpl implements TagService {
             final Session session = resourceResolver.adaptTo(Session.class);
             Query query = queryBuilder.createQuery(PredicateGroup.create(createTextSearchQuery(tagId,searchPath)), session);
 
+            SearchResult rawResults = query.getResult();
+            Iterator<Node> nodeList = rawResults.getNodes();
+
             hits = query.getResult().getHits();
             System.out.println("aaaa hitsize");
             System.out.println(hits.size());
@@ -141,6 +149,7 @@ public class TagServiceImpl implements TagService {
                 System.out.println(temp.getPath());
                 System.out.println("");
                 paths.add(temp.getPath());
+//                temp.getNode().getProperty("jcr:title");
             }
 
         }catch (Exception e){
@@ -155,5 +164,39 @@ public class TagServiceImpl implements TagService {
 //        return searchResult;
         return paths;
     }
+
+    public List<String> getTagsTitle() {
+        List<Hit> tagHits = new ArrayList();
+        List<String> tagList = new ArrayList();
+
+        Map<String,String> tagQueryMap=new HashMap<>();
+        tagQueryMap.put("type","cq:tags");
+        tagQueryMap.put("path","/content/cq:tags/seantags");
+
+        try {
+            ResourceResolver resourceResolver = ResolverUtil.newResolver(resourceResolverFactory);
+            final Session session = resourceResolver.adaptTo(Session.class);
+
+            Query query = queryBuilder.createQuery(PredicateGroup.create(tagQueryMap), session);
+
+            tagHits = query.getResult().getHits();
+
+            for (Hit temp: tagHits) {
+                System.out.println("");
+                System.out.println("aaaaaa_______tagHits__title");
+                String title = temp.getNode().getProperty("jcr:title").getString();
+                System.out.println(title);
+                System.out.println("");
+                tagList.add(title);
+            }
+
+        } catch (Exception e){
+            System.out.println("\n ----ERROR -----{} ");
+            System.out.println(e.getMessage());
+        };
+
+        return tagList;
+
+    };
 
 }

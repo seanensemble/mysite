@@ -1,0 +1,30 @@
+<!--/Users/seanl/VSABLE/_WORK_code/AEM/Maven/mysite/ui.apps/src/main/content/jcr_root/apps/mysite/components/seantagservlet/seantagservlet.html-->
+
+<div data-cmp-is="seantagservlet">
+    <h1>Sean tag servlet</h1>
+
+    <div class="cmp-helloworld__item" data-sly-use.model="com.mysite.core.models.SeanAssetListModel">
+        <h3>texst SeanAssetListModel: ${model.texst}</h3>
+    </div>
+
+    <div class="cmp-helloworld__item" data-sly-use.model="com.mysite.core.models.SeanTagServletModel">
+
+        <h3>texst SeanTagServletModel: ${model.texst}</h3>
+
+        <a href="http://localhost:4502/content/mysite/us/en/servlet-page/jcr:content.test.txt${model.svltags}" target="_blank">Click to trigger servlet</a>
+
+        <form method="POST" enctype="multipart/form-data" action="/random/nonexisiting/page">
+            <div>
+                <h3>Check the tag(s)</h3>
+                <p data-sly-repeat="${model.nonCqProp}">
+                    <input type="checkbox" id="${item}" name="tagbox${item}" value="${item}">
+                    <label for="${item}">${item}</label><br>
+                </p>
+            </div>
+
+            <button type="submit">submit</button>
+        </form>
+        <hr>
+    </div>
+
+</div>

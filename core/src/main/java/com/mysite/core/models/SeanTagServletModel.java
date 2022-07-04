@@ -15,33 +15,32 @@
  */
 package com.mysite.core.models;
 
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
 import com.mysite.core.services.TagService;
-import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
-
-import javax.annotation.PostConstruct;
-
+import com.mysite.core.workflows.SeanTagStep;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
-import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.OSGiService;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
-import com.day.cq.wcm.api.Page;
-import com.day.cq.wcm.api.PageManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Optional;
-import java.util.List;
+import javax.annotation.PostConstruct;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.apache.sling.api.resource.ResourceResolver.PROPERTY_RESOURCE_TYPE;
 
 @Model(adaptables = Resource.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
-public class SeanAssetListModel {
-
+public class SeanTagServletModel {
     private static final Logger LOG = LoggerFactory.getLogger(SeanTagServletModel.class);
 
     @OSGiService
@@ -57,10 +56,8 @@ public class SeanAssetListModel {
     private ResourceResolver resourceResolver;
 
     @ValueMapValue
-    private String path;
+    private String[] svltags;
 
-    @ValueMapValue
-    private List<String> tag;
 
     @ValueMapValue
     private String texst;
@@ -69,45 +66,43 @@ public class SeanAssetListModel {
     protected void init() {
         PageManager pageManager = resourceResolver.adaptTo(PageManager.class);
         String currentPagePath = Optional.ofNullable(pageManager)
-                .map(pm -> pm.getContainingPage(currentResource))
-                .map(Page::getPath).orElse("");
+            .map(pm -> pm.getContainingPage(currentResource))
+            .map(Page::getPath).orElse("");
     }
 
     public String getTexst() {
 
-        LOG.info("SeanAssetListModel_______getTexst_______SeanAssetListModel");
+        LOG.info("SeanTagServletModel_______getTexst_______SeanTagServletModel");
 
         return texst;
     }
 
 
-    public String getPath() {
+    public String getSvltags() {
+        LOG.info("getSvltags_1");
 
-        System.out.println("");
-        System.out.println("_______path1_______");
-        System.out.println(path);
-        System.out.println("");
+        List<String> tagList = new ArrayList<String>(){};
+        String paramString = "";
 
-        return path;
+        if(svltags != null) {
+            for (int i = 0; i < svltags.length; i++) {
+//                tagList.add(svltags[i]);
+                paramString += String.format("&svltags=%s", svltags[i]);
+            }
+
+//            int taglength = svltags.length;
+//            LOG.info("taglenght is : {}", taglength);
+
+//            paramString.substring(1);
+            paramString = StringUtils.replaceFirst(paramString, "&", "?");
+        }
+
+        return paramString;
     }
 
+    public List<String> getNonCqProp() {
 
-    public List getTag() {
-
-        System.out.println("");
-        System.out.println("_______getTag1_______");
-        System.out.println(tag);
-        System.out.println("_______path from jcr?_______");
-        System.out.println(path);
-        System.out.println("");
-
-        List<Integer> list=new ArrayList<Integer>(){{
-            add(1);
-            add(2);
-            add(3);
-        }};
-
-        return tagService.searchResult(tag, path);
+        List<String> tagtitles = tagService.getTagsTitle();
+        return tagtitles;
     }
-
 }

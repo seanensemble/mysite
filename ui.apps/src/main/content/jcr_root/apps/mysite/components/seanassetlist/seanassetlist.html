@@ -4,7 +4,11 @@
 <div data-cmp-is="seanassetlist">
     <h1>seanassetlist component 1</h1>
 
+
+
     <div class="cmp-helloworld__item" data-sly-use.model="com.mysite.core.models.SeanAssetListModel">
+
+        <h3>texst: ${model.texst}</h3>
         <p class="cmp-helloworld__item-label">Model path:</p>
         <pre class="cmp-helloworld__item-output" data-cmp-hook-seanassetlist="model">${model.path}</pre>
 

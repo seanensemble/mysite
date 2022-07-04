@@ -1,3 +1,5 @@
+<!-- // /Users/seanl/VSABLE/_WORK_code/AEM/Maven/mysite/ui.apps/src/main/content/jcr_root/apps/mysite/components/helloworld/helloworld.html -->
+
 <!--/*
     Copyright 2015 Adobe Systems Incorporated
   
@@ -14,7 +16,7 @@
     limitations under the License.
 */-->
 <div class="cmp-helloworld" data-cmp-is="helloworld">
-	<h2 class="cmp-helloworld__title">Grab back?</h2>
+	<h2 class="cmp-helloworld__title">Grab back</h2>
     <h2 class="cmp-helloworld__title">Hello World Component</h2>
     <div class="cmp-helloworld__item" data-sly-test="${properties.text}">
         <p class="cmp-helloworld__item-label">Text property3:</p>
@@ -26,15 +28,15 @@
     </div>
 
 
-    <div class="cmp-helloworld" data-cmp-is="osgiconfig">
-        <div class="cmp-helloworld__item" data-sly-use.osgiconfig="com.mysite.core.models.OSGiConfigDemo">
-            <p class="cmp-helloworld__item-label">osgiconfig serviceName:</p>
-            <pre class="cmp-helloworld__item-output"data-cmp-hook-osgiconfig="osgiconfig">${osgiconfig.serviceName}</pre>
+<!--    <div class="cmp-helloworld" data-cmp-is="osgiconfig">-->
+<!--        <div class="cmp-helloworld__item" data-sly-use.osgiconfig="com.mysite.core.models.OSGiConfigDemo">-->
+<!--            <p class="cmp-helloworld__item-label">osgiconfig serviceName:</p>-->
+<!--            <pre class="cmp-helloworld__item-output"data-cmp-hook-osgiconfig="osgiconfig">${osgiconfig.serviceName}</pre>-->
 
-            <hr>
+<!--            <hr>-->
 
-            <p class="cmp-helloworld__item-label">osgiCronconfig serviceName:</p>
-            <pre class="cmp-helloworld__item-output"data-cmp-hook-osgiconfig="osgiconfig">${osgiconfig.cronServiceName}</pre>
-        </div>
-    </div>
+<!--            <p class="cmp-helloworld__item-label">osgiCronconfig serviceName:</p>-->
+<!--            <pre class="cmp-helloworld__item-output"data-cmp-hook-osgiconfig="osgiconfig">${osgiconfig.cronServiceName}</pre>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
