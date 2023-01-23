@@ -12,6 +12,8 @@ import com.adobe.granite.workflow.exec.WorkItem;
 //import com.day.cq.workflow.exec.WorkflowProcess;
 //import com.day.cq.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -19,7 +21,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Node;
 import javax.jcr.Session;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 @Component(
@@ -39,11 +43,45 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
         LOG.info("\n ===================================");
 
         try {
+
+            ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
+
+            Resource parentResource = resolver.getResource("/content/dam/mysite");
+
+            Resource currentResource = parentResource.getChild("3683.jpeg");
+
+
+            if(currentResource == null) {
+                currentResource = resolver.create(parentResource, "3683.jpeg", new HashMap<>());
+            }
+
+            Session session = workflowSession.adaptTo(Session.class);
+
+            String currentPath = "/content/dam/mysite/3683.jpeg";
+
+            String newPath = "/content/dam/mysite/3683_copied.jpeg";
+
+            Map<String, Object> properties = new HashMap<>();
+            properties.put("jcr:primaryType", "nt:folder");
+
+            Resource movedFolder = parentResource.getChild("moved_folder");
+
+            if (movedFolder == null) {
+                Resource newResource = resolver.create(parentResource, "moved_folder",  properties);
+            }
+
+//            resolver.move(currentResource.getPath(), newResource.getPath());
+
+            resolver.move(currentPath, movedFolder.getPath());
+
             WorkflowData workflowData = workItem.getWorkflowData();
+
+            retrieveWorkflowPayload(workflowData);
+
             if (workflowData.getPayloadType().equals("JCR_PATH")) {
-                Session session = workflowSession.adaptTo(Session.class);
+//                Session session = workflowSession.adaptTo(Session.class);
                 String path = workflowData.getPayload().toString() + "/jcr:content";
-                Node node = (Node) session.getItem(path);
+//                Node node = (Node) session.getItem(path);
 
                 String[] processArgs = processArguments.get("PROCESS_ARGS", "string").toString().split(","); //all the inputs splitted by "," will be inputted here.
 
@@ -56,10 +94,10 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
 
                     LOG.info(" wfArgssssss args[0] {}", args[0]);
                     LOG.info(" wfArgssssss args[1] {}", args[1]);
-                    if(node != null) {
+//                    if(node != null) {
                         wfd.put(prop, value); // Passing it to the next step execution, including "title" attribute and the process properties.
-                        node.setProperty(prop, value); // taking the properties and add to JCR contents.
-                    }
+//                        node.setProperty(prop, value); // taking the properties and add to JCR contents.
+//                    }
                 }
                 Set<String> keyset = wfd.keySet();
                 Iterator<String> i = keyset.iterator();
@@ -70,8 +108,13 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
             }
         }
         catch( Exception e) {
-            LOG.info(" EXCEPTION CAUGHT ____ from process");
+            LOG.info(" EXCEPTION CAUGHT ____ from process 1");
             LOG.info(e.getMessage());
         }
+    }
+
+    private void retrieveWorkflowPayload(WorkflowData workflowData)  {
+        LOG.info("workflowData.getPayload().toString()");
+        LOG.info(workflowData.getPayload().toString());
     }
 }
