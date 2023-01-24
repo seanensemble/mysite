@@ -12,6 +12,7 @@ import com.adobe.granite.workflow.exec.WorkItem;
 //import com.day.cq.workflow.exec.WorkflowProcess;
 //import com.day.cq.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
+import com.day.cq.dam.api.Asset;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.framework.Constants;
@@ -43,8 +44,23 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
         LOG.info("\n ===================================");
 
         try {
-
             ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
+
+
+            String assetPath = "/content/dam/mysite/snowy-mountain-glacier.jpg";
+            Resource resource = resolver.getResource(assetPath);
+            Asset asset = resource.adaptTo(Asset.class);
+
+
+            String assetPath1 = "/content/dam/mysite/mountain-range.jpg";
+            Resource resource1 = resolver.getResource(assetPath1);
+            Asset asset1 = resource1.adaptTo(Asset.class);
+
+
+            String assetPath2 = "/content/dam/we-retail-screens/we-retail-instore-logo.png";
+            Resource resource2 = resolver.getResource(assetPath2);
+            Asset asset2 = resource2.adaptTo(Asset.class);
+
 
             Resource parentResource = resolver.getResource("/content/dam/mysite");
 
@@ -64,11 +80,19 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
             Map<String, Object> properties = new HashMap<>();
             properties.put("jcr:primaryType", "nt:folder");
 
-            Resource movedFolder = parentResource.getChild("moved_folder");
+            Resource movedFolder = parentResource.getChild("mountain");
 
             if (movedFolder == null) {
-                Resource newResource = resolver.create(parentResource, "moved_folder",  properties);
+                movedFolder = resolver.create(parentResource, "mountain",  properties);
             }
+
+            Resource movedInnerFolder = movedFolder.getChild("size_over_100k");
+
+            if (movedInnerFolder == null) {
+                movedInnerFolder = resolver.create(movedFolder, "size_over_100k",  properties);
+            }
+
+            // repeat the same process above for "movedFolder" as new parentResource
 
 //            resolver.move(currentResource.getPath(), newResource.getPath());
 
