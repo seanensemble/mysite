@@ -43,22 +43,29 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap processArguments) {
         LOG.info("\n ===================================");
 
+        String saved_path = "";
+
         try {
             ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
 
 
-            Resource sourceResource = resolver.getResource("/content/dam/mysite/images.png");
+            String payload_path = workItem.getWorkflowData().getPayload().toString();
+            saved_path = this.getStringBeforeJcrContent(payload_path);
+//            resolver.move(saved_path, "/content/dam/mysite/mountain/images.png");
+
+//            Resource sourceResource = resolver.getResource("/content/dam/mysite/images.png");
+            Resource sourceResource = resolver.getResource(saved_path);
             if (sourceResource != null) {
                 Node sourceNode = sourceResource.adaptTo(Node.class);
                 if (sourceNode != null) {
                     Session session = sourceNode.getSession();
-                    session.move(sourceNode.getPath(), "/content/dam/mysite/images123.png");
+                    session.move(sourceNode.getPath(), "/content/dam/mysite/mountain/images.png");
                     session.save();
                 }
             }
         }
         catch( Exception e) {
-            LOG.info(" EXCEPTION CAUGHT ____ from process 7");
+            LOG.info(" EXCEPTION CAUGHT ____ from process 8");
             LOG.info(e.getMessage());
         }
     }
