@@ -12,7 +12,9 @@ import com.adobe.granite.workflow.exec.WorkItem;
 //import com.day.cq.workflow.exec.WorkflowProcess;
 //import com.day.cq.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
+import com.adobe.xfa.Int;
 import com.day.cq.dam.api.Asset;
+import com.day.cq.dam.api.DamConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.framework.Constants;
@@ -45,31 +47,61 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
 
         String saved_path = "";
 
+        this.createFolder(workflowSession, "/content/dam/mysite", "mountain");
+        this.createFolder(workflowSession, "/content/dam/mysite/mountain", "size_over_100k");
+
+
         try {
-            ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
-
-
             String payload_path = workItem.getWorkflowData().getPayload().toString();
             saved_path = this.getStringBeforeJcrContent(payload_path);
-//            resolver.move(saved_path, "/content/dam/mysite/mountain/images.png");
 
-//            Resource sourceResource = resolver.getResource("/content/dam/mysite/images.png");
-            Resource sourceResource = resolver.getResource(saved_path);
-            if (sourceResource != null) {
-                Node sourceNode = sourceResource.adaptTo(Node.class);
-                if (sourceNode != null) {
-                    Session session = sourceNode.getSession();
-                    session.move(sourceNode.getPath(), "/content/dam/mysite/mountain/images.png");
+            ResourceResolver resolver = workflowSession.adaptTo(ResourceResolver.class);
+            Resource resource = resolver.getResource(saved_path);
+            Asset asset = resource.adaptTo(Asset.class);
+
+            String title = ((String) asset.getMetadata(DamConstants.DC_TITLE));
+            Long size = ((Long) asset.getMetadata(DamConstants.DAM_SIZE));
+
+//            ResourceResolver resolver2 = workflowSession.adaptTo(ResourceResolver.class);
+//            Resource resource1 = resolver2.getResource("/content/dam/mysite/snowy-mountain-glacier.jpg");
+//            Asset asset2 = resource1.adaptTo(Asset.class);
+
+
+            String alice = "alice";
+//            Resource sourceResource = resolver.getResource(saved_path);
+//            if (sourceResource != null) {
+//                Node sourceNode = sourceResource.adaptTo(Node.class);
+//                if (sourceNode != null) {
+//                    Session session = sourceNode.getSession();
+//                    session.move(sourceNode.getPath(), "/content/dam/mysite/mountain/images.png");
+//                    session.save();
+//                }
+//            }
+        }
+        catch( Exception e) {
+            LOG.info(" EXCEPTION CAUGHT ____ from process 2");
+            LOG.info(e.getMessage());
+        }
+    }
+
+    private void createFolder(WorkflowSession workflowSession, String parent_path, String folder_name) {
+
+        try {
+            Session session = workflowSession.adaptTo(Session.class);
+            Node parentNode = session.getNode(parent_path); // "/content/dam/mysite"
+
+            if(parentNode != null) {
+                if (!parentNode.hasNode(folder_name)) { // "mountain"
+                    parentNode.addNode(folder_name, "nt:folder");
                     session.save();
                 }
             }
         }
         catch( Exception e) {
-            LOG.info(" EXCEPTION CAUGHT ____ from process 8");
+            LOG.info("creating_folder_1");
             LOG.info(e.getMessage());
         }
     }
-
 
     private String getStringBeforeJcrContent(String input) {
         int index = input.indexOf("/jcr:content");
