@@ -15,15 +15,19 @@ import com.adobe.granite.workflow.metadata.MetaDataMap;
 import com.adobe.xfa.Int;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.DamConstants;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.http.client.HttpClient;
 
 import javax.jcr.Node;
 import javax.jcr.Session;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -43,12 +47,19 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
 
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap processArguments) {
-        LOG.info("\n ===================================");
+        LOG.info("\n ===================================2");
 
         String saved_path = "";
 
-        this.createFolder(workflowSession, "/content/dam/mysite", "mountain");
-        this.createFolder(workflowSession, "/content/dam/mysite/mountain", "size_over_100k");
+        String addedFolderParent = "mountain";
+        String addedFolderChild = "size_over_100k";
+        String rootFolder = "/content/dam/mysite";
+        String addedFolderParentPath = rootFolder + "/" + addedFolderParent;
+        String addedFolderChildPath = rootFolder + "/" + addedFolderParent + "/" + addedFolderChild;
+
+
+        this.createFolder(workflowSession, "/content/dam/mysite", addedFolderParent);
+        this.createFolder(workflowSession, addedFolderParentPath, addedFolderChild);
 
 
         try {
@@ -59,28 +70,53 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
             Resource resource = resolver.getResource(saved_path);
             Asset asset = resource.adaptTo(Asset.class);
 
-            String title = ((String) asset.getMetadata(DamConstants.DC_TITLE));
+            String title = ((Object[]) asset.getMetadata(DamConstants.DC_TITLE))[0].toString();
             Long size = ((Long) asset.getMetadata(DamConstants.DAM_SIZE));
 
-//            ResourceResolver resolver2 = workflowSession.adaptTo(ResourceResolver.class);
-//            Resource resource1 = resolver2.getResource("/content/dam/mysite/snowy-mountain-glacier.jpg");
-//            Asset asset2 = resource1.adaptTo(Asset.class);
+            String moved_path = "";
+
+            String file_name = asset.getName();
+
+            if (title.contains("mountain") && size > 100000) {
+                moved_path = addedFolderChildPath;
+            } else if (title.contains("mountain") && size < 100000) {
+                moved_path = addedFolderParentPath;
+            }
+
+
+            Resource sourceResource = resolver.getResource(saved_path);
+            if (sourceResource != null) {
+                Node sourceNode = sourceResource.adaptTo(Node.class);
+                if (sourceNode != null && moved_path != "") {
+                    Session session = sourceNode.getSession();
+                    session.move(sourceNode.getPath(), moved_path + "/" + file_name);
+                    session.save();
+
+
+//                    this.refreshPage("http://localhost:4502/assets.html/content/dam/mysite");
+
+                }
+            }
 
 
             String alice = "alice";
-//            Resource sourceResource = resolver.getResource(saved_path);
-//            if (sourceResource != null) {
-//                Node sourceNode = sourceResource.adaptTo(Node.class);
-//                if (sourceNode != null) {
-//                    Session session = sourceNode.getSession();
-//                    session.move(sourceNode.getPath(), "/content/dam/mysite/mountain/images.png");
-//                    session.save();
-//                }
-//            }
+
         }
         catch( Exception e) {
-            LOG.info(" EXCEPTION CAUGHT ____ from process 2");
+            LOG.info(" EXCEPTION CAUGHT ____ from process 4");
             LOG.info(e.getMessage());
+        }
+    }
+
+    private void refreshPage(String url) {
+        HttpClient httpClient = HttpClientBuilder.create().build();
+        HttpGet httpGet = new HttpGet(url);
+
+        try {
+            httpClient.execute(httpGet);
+            LOG.info("__GET request to {} was successful.", url);
+        } catch (IOException e) {
+            LOG.error("__Error making GET request to {}: {}", url, e.getMessage());
         }
     }
 
@@ -91,7 +127,7 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
             Node parentNode = session.getNode(parent_path); // "/content/dam/mysite"
 
             if(parentNode != null) {
-                if (!parentNode.hasNode(folder_name)) { // "mountain"
+                if (!parentNode.hasNode(folder_name)) {
                     parentNode.addNode(folder_name, "nt:folder");
                     session.save();
                 }
