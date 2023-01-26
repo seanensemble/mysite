@@ -1,53 +1,35 @@
 package com.mysite.core.workflows;
 
-//import com.adobe.granite.rest.Constants;
-//import com.day.cq.workflow.WorkflowSession;
 import com.adobe.granite.workflow.WorkflowSession;
-//import com.day.cq.workflow.exec.WorkItem;
-import com.adobe.granite.workflow.exec.WorkflowData;
-import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.exec.WorkItem;
-//import com.day.cq.workflow.exec.WorkflowData;
-//import com.day.cq.workflow.exec.WorkflowProcess;
-//import com.day.cq.workflow.exec.WorkflowProcess;
-//import com.day.cq.workflow.exec.WorkflowProcess;
+import com.adobe.granite.workflow.exec.WorkflowProcess;
 import com.adobe.granite.workflow.metadata.MetaDataMap;
-import com.adobe.xfa.Int;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.dam.api.DamConstants;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.http.client.HttpClient;
 
 import javax.jcr.Node;
 import javax.jcr.Session;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 @Component(
         service = WorkflowProcess.class,
         immediate = true,
         property = {
-                "process.label" + " = Geeks Workflow Process", // process.label is the name used to show
-                Constants.SERVICE_VENDOR + "=AEM Geeks",
-                Constants.SERVICE_DESCRIPTION + " = Custom geeks workflow step."
+                "process.label" + " = Asset Metadata Workflow Process",
+                Constants.SERVICE_VENDOR + "=Mysite example",
+                Constants.SERVICE_DESCRIPTION + " = Custom asset metadata workflow."
         }
 )
-public class GeeksWorkflowProcess implements WorkflowProcess {
-    private static final Logger LOG = LoggerFactory.getLogger(GeeksWorkflowProcess.class);
+public class AssetMetadataWorkflow implements WorkflowProcess {
+    private static final Logger LOG = LoggerFactory.getLogger(AssetMetadataWorkflow.class);
 
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap processArguments) {
-        LOG.info("\n ===================================2");
 
         String saved_path = "";
 
@@ -91,32 +73,11 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
                     Session session = sourceNode.getSession();
                     session.move(sourceNode.getPath(), moved_path + "/" + file_name);
                     session.save();
-
-
-//                    this.refreshPage("http://localhost:4502/assets.html/content/dam/mysite");
-
                 }
             }
-
-
-            String alice = "alice";
-
         }
         catch( Exception e) {
-            LOG.info(" EXCEPTION CAUGHT ____ from process 4");
             LOG.info(e.getMessage());
-        }
-    }
-
-    private void refreshPage(String url) {
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        HttpGet httpGet = new HttpGet(url);
-
-        try {
-            httpClient.execute(httpGet);
-            LOG.info("__GET request to {} was successful.", url);
-        } catch (IOException e) {
-            LOG.error("__Error making GET request to {}: {}", url, e.getMessage());
         }
     }
 
@@ -134,7 +95,6 @@ public class GeeksWorkflowProcess implements WorkflowProcess {
             }
         }
         catch( Exception e) {
-            LOG.info("creating_folder_1");
             LOG.info(e.getMessage());
         }
     }
