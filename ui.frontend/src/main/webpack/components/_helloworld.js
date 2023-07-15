@@ -75,6 +75,16 @@
             childList: true,
             characterData: true
         });
+
+
+        fetch('/libs/granite/csrf/token.json')
+            .then(response => response.json())
+            .then(data => {
+                // Set the CSRF token value in the form
+                document.getElementById('csrf-token').value = data.token;
+            });
+
+
     }
 
     if (document.readyState !== "loading") {

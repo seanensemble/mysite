@@ -30,7 +30,7 @@ import java.util.List;
 @Component(service = Servlet.class)
 @SlingServletPaths(
 //        value = {"/bin/pages","/geeks/pages"}
-        value = {"/random/nonexisiting/page"}
+    value = {"/random/nonexisiting/page"}
 )
 public class TagServletPath extends SlingAllMethodsServlet {
     private static final Logger LOG = LoggerFactory.getLogger(TagServletPath.class);
@@ -42,6 +42,8 @@ public class TagServletPath extends SlingAllMethodsServlet {
     @Override
     protected void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp)
             throws ServletException, IOException {
+
+        LOG.info("doPost calledddddd");
 
         List<String> serviceResult = new ArrayList<String>(){};
         List<String> inputTags = new ArrayList<String>(){};
@@ -79,12 +81,15 @@ public class TagServletPath extends SlingAllMethodsServlet {
                 LOG.info(result);
             };
 
-        }catch (Exception e){
+        } catch (Exception e){
             LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());
         }
+
+
         resp.setContentType("application/json");
 
         resp.getWriter().write(serviceResult.toString());
+//        resp.getWriter().write("serviceResult.toString()");
 
     }
 }
