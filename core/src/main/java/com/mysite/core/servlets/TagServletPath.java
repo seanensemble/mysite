@@ -48,7 +48,8 @@ public class TagServletPath extends SlingAllMethodsServlet {
         List<String> serviceResult = new ArrayList<String>(){};
         List<String> inputTags = new ArrayList<String>(){};
 
-        String searchpath = "/notexisting";
+//        String searchpath = "/notexisting";
+        String searchpath = "/content/dam/mysite";
 
         try {
             LOG.info("------------------------STARTEDGeeksPathTypeServletPOST-------------------------");

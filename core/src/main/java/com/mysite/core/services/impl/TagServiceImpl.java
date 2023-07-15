@@ -84,7 +84,7 @@ public class TagServiceImpl implements TagService {
         Map<String,String> queryMap=new HashMap<>();
 //        queryMap.put("type","cq:Asset");
         queryMap.put("type","dam:Asset");
-        queryMap.put("path",searchPath);
+        queryMap.put("path", searchPath);
         queryMap.put("property.and","false");
         queryMap.put("property", "jcr:content/metadata/cq:tags");
 
