@@ -9,7 +9,8 @@
 
         <a href="http://localhost:4502/content/mysite/us/en/servlet-page/jcr:content.test.txt${model.svltags}&path=${model.searchpath}" target="_blank">Click to trigger servlet</a>
 
-        <form method="POST" enctype="multipart/form-data" action="/random/nonexisiting/page">
+<!--        <form method="POST" enctype="multipart/form-data" action="/random/nonexisiting/page">-->
+        <form method="POST" enctype="multipart/form-data" action="/random/TagManagerServlet/page">
             <div>
                 <input type="text" name="spath" id="spath">
                 <label for="spath">searchpath</label>
