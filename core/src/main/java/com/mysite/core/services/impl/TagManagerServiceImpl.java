@@ -30,8 +30,7 @@ public class TagManagerServiceImpl implements TagManagerService {
     public void createTag(String tagPath, String tagTitle, String tagDescription) {
         ResourceResolver resourceResolver = null;
 
-        LOGGER.info("createTag createTag createTag");
-        LOGGER.error("createTag createTag createTag");
+        LOGGER.info("createTag_createTag_createTag: " + tagPath);
 
         try {
             // Get the ResourceResolver
@@ -42,7 +41,7 @@ public class TagManagerServiceImpl implements TagManagerService {
 
             TagManager tagManager = jcrTagManagerFactory.getTagManager(session);
 
-            if(tagManager.canCreateTag("content/cq:tags/customtags/tagname2")) {
+            if(tagManager.canCreateTag(tagPath)) {
                 LOGGER.info("can Create");
             }
             else {

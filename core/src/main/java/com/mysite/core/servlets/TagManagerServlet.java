@@ -41,21 +41,27 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
         LOG.info("TagManagerServlet calledddddd");
         LOG.error("TagManagerServlet calledddddd");
 
-        String path_param = "";
         try {
+            String path_param = "";
+            String title_param = "";
 
             List<RequestParameter> requestParameterList=req.getRequestParameterList();
             for(RequestParameter requestParameter : requestParameterList){
                 LOG.info("\n ==PARAMETERS===>  {} : {} ",requestParameter.getName(),requestParameter.getString());
 
                 if(requestParameter.getName().equals("spath")) {
-                    LOG.info("spath___TagManagerServlet {}", requestParameter.getString());
-
                     path_param = requestParameter.getString();
                 }
+                if(requestParameter.getName().equals("tagTitle")) {
+                    title_param = requestParameter.getString();
+                }
+
             }
 
-            tagManagerService.createTag("/content/cq:tags/example-namespace/example-tag", "tagTitle2", "tag custom desc");
+            LOG.info("spath_before___TagManagerServlet {}", path_param);
+
+//            "/content/cq:tags/example-namespace/example-tag"
+            tagManagerService.createTag(path_param, title_param, "tag custom desc");
         }
         catch (Exception e) {
             LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());
