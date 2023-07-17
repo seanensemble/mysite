@@ -36,15 +36,30 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
     protected void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp)
             throws ServletException, IOException {
 
+        List<String> inputTags = new ArrayList<String>(){};
+
         LOG.info("TagManagerServlet calledddddd");
         LOG.error("TagManagerServlet calledddddd");
 
-//        try {
-//            tagManagerService.createTag("/content/cq:tags/customtags", "tagCustom2", "tag custom desc");
-//        }
-//        catch (Exception e) {
-//            LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());
-//        }
+        String path_param = "";
+        try {
+
+            List<RequestParameter> requestParameterList=req.getRequestParameterList();
+            for(RequestParameter requestParameter : requestParameterList){
+                LOG.info("\n ==PARAMETERS===>  {} : {} ",requestParameter.getName(),requestParameter.getString());
+
+                if(requestParameter.getName().equals("spath")) {
+                    LOG.info("spath___TagManagerServlet {}", requestParameter.getString());
+
+                    path_param = requestParameter.getString();
+                }
+            }
+
+            tagManagerService.createTag("/content/cq:tags/example-namespace/example-tag", "tagTitle2", "tag custom desc");
+        }
+        catch (Exception e) {
+            LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());
+        }
 
         resp.setContentType("application/json");
 

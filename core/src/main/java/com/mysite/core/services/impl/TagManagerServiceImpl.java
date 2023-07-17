@@ -4,6 +4,8 @@ import com.day.cq.tagging.JcrTagManagerFactory;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 
+import com.mysite.core.services.TagManagerService;
+import com.mysite.core.utils.ResolverUtil;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 
@@ -14,50 +16,60 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.Session;
 
-@Component(service = TagManagerServiceImpl.class, immediate = true)
-public class TagManagerServiceImpl {
+@Component(service = TagManagerService.class, immediate = true)
+public class TagManagerServiceImpl implements TagManagerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TagManagerServiceImpl.class);
 
     @Reference
-    private ResourceResolverFactory resolverFactory;
+    private ResourceResolverFactory resourceResolverFactory;
 
     @Reference
     private JcrTagManagerFactory jcrTagManagerFactory;
 
     public void createTag(String tagPath, String tagTitle, String tagDescription) {
-        ResourceResolver resolver = null;
+        ResourceResolver resourceResolver = null;
 
         LOGGER.info("createTag createTag createTag");
         LOGGER.error("createTag createTag createTag");
 
-//        try {
-//            // Get the ResourceResolver
-//            resolver = resolverFactory.getServiceResourceResolver(null);
-//
-//            // Get the current Session
-//            Session session = resolver.adaptTo(Session.class);
-//
-//            if (session != null) {
-//                // Get the TagManager
-//                TagManager tagManager = jcrTagManagerFactory.getTagManager(session);
-//
-//                // Create the tag
-//                Tag tag = tagManager.createTag(tagPath, tagTitle, tagDescription, true);
-//
-//                // Log tag ID for confirmation
-//                LOGGER.info("Tag created with ID: " + tag.getTagID());
-//
-//                // Save the session to persist changes
-//                session.save();
-//            }
-//
-//        } catch (Exception e) {
-//            LOGGER.error("Error while creating tag", e);
-//        } finally {
-//            if (resolver != null && resolver.isLive()) {
-//                resolver.close();
-//            }
-//        }
+        try {
+            // Get the ResourceResolver
+            resourceResolver = ResolverUtil.newResolver(resourceResolverFactory);
+
+            // Get the current Session
+            final Session session = resourceResolver.adaptTo(Session.class);
+
+            TagManager tagManager = jcrTagManagerFactory.getTagManager(session);
+
+            if(tagManager.canCreateTag("content/cq:tags/customtags/tagname2")) {
+                LOGGER.info("can Create");
+            }
+            else {
+                LOGGER.info("cannot Create");
+            }
+
+            if (session != null) {
+                // Get the TagManager
+
+                // Create the tag
+                Tag tag = tagManager.createTag(tagPath, tagTitle, tagDescription, true);
+
+                // Log tag ID for confirmation
+                LOGGER.info("Tag created with ID: " + tag.getTagID());
+                LOGGER.info("Tag created with ID_2");
+
+                // Save the session to persist changes
+                session.save();
+            }
+
+        } catch (Exception e) {
+            LOGGER.error("Error while creating tag", e);
+        } finally {
+            LOGGER.error("finally donne");
+            if (resourceResolver != null && resourceResolver.isLive()) {
+                resourceResolver.close();
+            }
+        }
     }
 }
