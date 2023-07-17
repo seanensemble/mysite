@@ -3,4 +3,6 @@ import java.util.List;
 
 public interface TagManagerService {
     public void createTag(String tagPath, String tagTitle, String tagDescription);
+
+    public void retrieveTags(String resourcePath);
 }

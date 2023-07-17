@@ -60,8 +60,10 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 
             LOG.info("spath_before___TagManagerServlet {}", path_param);
 
+            tagManagerService.retrieveTags("/content/dam/mysite/asset.jpg");
+
 //            "/content/cq:tags/example-namespace/example-tag"
-            tagManagerService.createTag(path_param, title_param, "tag custom desc");
+//            tagManagerService.createTag(path_param, title_param, "tag custom desc");
         }
         catch (Exception e) {
             LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());
