@@ -36,6 +36,7 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
     protected void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp)
             throws ServletException, IOException {
 
+        List<String> serviceResult = new ArrayList<String>(){};
         List<String> inputTags = new ArrayList<String>(){};
 
         LOG.info("TagManagerServlet calledddddd");
@@ -62,6 +63,8 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 
             tagManagerService.retrieveTags("/content/dam/mysite/asset.jpg");
 
+             serviceResult = serviceResult = tagManagerService.retrieveCFbyTags("/content/dam", new String[] { "customtags:tagone" });
+
 //            "/content/cq:tags/example-namespace/example-tag"
 //            tagManagerService.createTag(path_param, title_param, "tag custom desc");
         }
@@ -71,8 +74,8 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 
         resp.setContentType("application/json");
 
-//        resp.getWriter().write(serviceResult.toString());
-        resp.getWriter().write("TagManagerServlet");
+        resp.getWriter().write(serviceResult.toString());
+//        resp.getWriter().write("TagManagerServlet");
 
     }
 }
