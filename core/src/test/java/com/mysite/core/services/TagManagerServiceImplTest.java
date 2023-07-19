@@ -4,6 +4,7 @@ import com.day.cq.commons.RangeIterator;
 import com.day.cq.tagging.JcrTagManagerFactory;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
+import com.mysite.core.helper.Helper1;
 import com.mysite.core.services.TagManagerService;
 import com.mysite.core.services.impl.TagManagerServiceImpl;
 import com.mysite.core.utils.ResolverUtil;
@@ -53,6 +54,8 @@ public class TagManagerServiceImplTest {
 
     @Mock
     private RangeIterator<Resource> iterator;
+
+
 
     @InjectMocks
     private TagManagerServiceImpl tagManagerService;

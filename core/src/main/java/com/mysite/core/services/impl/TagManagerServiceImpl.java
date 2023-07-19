@@ -5,6 +5,7 @@ import com.day.cq.tagging.JcrTagManagerFactory;
 import com.day.cq.tagging.Tag;
 import com.day.cq.tagging.TagManager;
 
+import com.mysite.core.helper.Helper1;
 import com.mysite.core.services.TagManagerService;
 import com.mysite.core.utils.ResolverUtil;
 import org.apache.sling.api.resource.Resource;
@@ -37,6 +38,8 @@ public class TagManagerServiceImpl implements TagManagerService {
 
         LOGGER.info("createTag_createTag_createTag: " + tagPath);
 
+        Helper1 helper = new Helper1();
+
         try {
             // Get the ResourceResolver
             resourceResolver = ResolverUtil.newResolver(resolverFactory);
@@ -52,6 +55,8 @@ public class TagManagerServiceImpl implements TagManagerService {
             else {
                 LOGGER.info("cannot Create");
             }
+
+            helper.getBaeldungString();
 
 //            if (session != null) {
                 // Get the TagManager
