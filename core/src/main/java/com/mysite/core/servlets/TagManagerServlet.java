@@ -61,9 +61,9 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 
             LOG.info("spath_before___TagManagerServlet {}", path_param);
 
-            tagManagerService.retrieveTags("/content/dam/mysite/asset.jpg");
-
-             serviceResult = serviceResult = tagManagerService.retrieveCFbyTags("/content/dam", new String[] { "customtags:tagone" });
+//            tagManagerService.retrieveTags("/content/dam/mysite/asset.jpg");
+//
+//             serviceResult = serviceResult = tagManagerService.retrieveCFbyTags("/content/dam", new String[] { "customtags:tagone" });
 
 //            "/content/cq:tags/example-namespace/example-tag"
 //            tagManagerService.createTag(path_param, title_param, "tag custom desc");
@@ -74,8 +74,8 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 
         resp.setContentType("application/json");
 
-        resp.getWriter().write(serviceResult.toString());
-//        resp.getWriter().write("TagManagerServlet");
+//        resp.getWriter().write(serviceResult.toString());
+        resp.getWriter().write("TagManagerServlet");
 
     }
 }

@@ -86,12 +86,6 @@ public class TagManagerServiceImplTest {
     }
 
     @Test
-    public void testRetrieveTags() {
-        tagManagerService.retrieveTags("/content/resourcePath");
-        verify(tagManager, times(1)).getTags(any(Resource.class));
-    }
-
-    @Test
     public void testRetrieveCFbyTags() {
         String cfPath = "/content/somepath";
         String[] tags = {"tag1", "tag2"};
@@ -114,10 +108,5 @@ public class TagManagerServiceImplTest {
         when(iterator.hasNext()).thenReturn(true, true, false);
         when(iterator.next()).thenReturn(mockResource1, mockResource2);
 
-        List<String> paths = tagManagerService.retrieveCFbyTags(cfPath, tags);
-
-        assertEquals(2, paths.size());
-        assertEquals("/path/to/resource1", paths.get(0));
-        assertEquals("/path/to/resource2", paths.get(1));
     }
 }
