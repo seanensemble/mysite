@@ -53,7 +53,7 @@ public class TagManagerServiceImpl implements TagManagerService {
                 LOGGER.info("cannot Create");
             }
 
-            if (session != null) {
+//            if (session != null) {
                 // Get the TagManager
 
                 // Create the tag
@@ -65,7 +65,7 @@ public class TagManagerServiceImpl implements TagManagerService {
 
                 // Save the session to persist changes
                 session.save();
-            }
+//            }
 
         } catch (Exception e) {
             LOGGER.error("Error while creating tag", e);
