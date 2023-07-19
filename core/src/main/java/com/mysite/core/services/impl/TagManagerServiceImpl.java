@@ -17,6 +17,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.jcr.Session;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,19 +34,19 @@ public class TagManagerServiceImpl implements TagManagerService {
     @Reference
     private JcrTagManagerFactory jcrTagManagerFactory;
 
+
     public void createTag(String tagPath, String tagTitle, String tagDescription) {
         ResourceResolver resourceResolver = null;
+        Session session = null;
 
         LOGGER.info("createTag_createTag_createTag: " + tagPath);
-
-        Helper1 helper = new Helper1();
 
         try {
             // Get the ResourceResolver
             resourceResolver = ResolverUtil.newResolver(resolverFactory);
 
             // Get the current Session
-            final Session session = resourceResolver.adaptTo(Session.class);
+            session = resourceResolver.adaptTo(Session.class);
 
             TagManager tagManager = jcrTagManagerFactory.getTagManager(session);
 
@@ -56,9 +57,8 @@ public class TagManagerServiceImpl implements TagManagerService {
                 LOGGER.info("cannot Create");
             }
 
-            helper.getBaeldungString();
 
-//            if (session != null) {
+            if (session != null) {
                 // Get the TagManager
 
                 // Create the tag
@@ -70,7 +70,10 @@ public class TagManagerServiceImpl implements TagManagerService {
 
                 // Save the session to persist changes
                 session.save();
-//            }
+
+                LOGGER.info("SAVVVVVVVED");
+
+            }
 
         } catch (Exception e) {
             LOGGER.error("Error while creating tag", e);
