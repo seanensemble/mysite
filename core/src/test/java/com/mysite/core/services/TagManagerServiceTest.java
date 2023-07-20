@@ -24,40 +24,23 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TagManagerServiceTest {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TagManagerServiceTest.class);
-
     @InjectMocks
     private TagManagerServiceImpl tagManagerService;
-
     @Mock
     private ResourceResolverFactory resolverFactory;
-
     @Mock
     private JcrTagManagerFactory jcrTagManagerFactory;
-
     @Mock
     private Session session;
-
     @Mock
     private TagManager tagManager;
-
     @Mock
     private ResourceResolver resourceResolver;
-
-//    private TagManagerServiceImpl tagManagerService;
-
-    @Mock
-    Helper1 helper;
-
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-
-
-        // Mocking ResolverUtil static call. You will need PowerMock to mock static methods.
         try {
             when(ResolverUtil.newResolver(resolverFactory)).thenReturn(resourceResolver);
             when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
@@ -65,62 +48,25 @@ public class TagManagerServiceTest {
         } catch (Exception e) {
             fail("Expected no exceptions, but got: " + e.getMessage());
         }
-
-
     }
 
     @Test
     public void testCreateTag() {
-        // Given
         String tagPath = "some/tagPath";
         String tagTitle = "TagTitle";
         String tagDescription = "TagDescription";
 
-
-        // When
         tagManagerService.createTag(tagPath, tagTitle, tagDescription);
 
-        LOGGER.info("inside testCreateTag");
-        System.out.println("inside testCreateTag println");
-
-        // Then
         try {
-            LOGGER.info("inside try bloc");
-            LOGGER.info(mockingDetails(session).printInvocations());
-            System.out.println(mockingDetails(session).printInvocations());
-            System.out.println(mockingDetails(tagManager).printInvocations());
-            System.out.println(mockingDetails(helper).printInvocations());
-
-
             verify(tagManager, times(1)).createTag(tagPath, tagTitle, tagDescription, true);
-            verify(session, times(1)).save();
-            verify(helper).getBaeldungString();
-        } catch (Exception e) {
-            fail("Expected no exceptions, but got: " + e.getMessage());
-        }
-//        verify(resourceResolver, times(1)).close();
-    }
 
+            System.out.println(mockingDetails(session).printInvocations()); // No interactions and stubbings found for mock: session
 
+            verify(session, times(1)).save(); // <=== testing session.save();
 
-    @Test
-    public void testSessionSave() {
-        // Given
-        String tagPath = "some/tagPath";
-        String tagTitle = "TagTitle";
-        String tagDescription = "TagDescription";
-
-        when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-
-        // When
-        tagManagerService.createTag(tagPath, tagTitle, tagDescription);
-
-        // Then
-        try {
-            verify(session, times(1)).save();
         } catch (Exception e) {
             fail("Expected no exceptions, but got: " + e.getMessage());
         }
     }
-
 }
