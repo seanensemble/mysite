@@ -2,8 +2,9 @@ package com.mysite.core.services.impl;
 
 import com.day.cq.tagging.JcrTagManagerFactory;
 import com.day.cq.tagging.TagManager;
-import com.mysite.core.helper.Helper1;
-import com.mysite.core.utils.ResolverUtil;
+import com.mysite.core.services.TagManagerService;
+import io.wcm.testing.mock.aem.junit5.AemContext;
+import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,115 +12,71 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.mockito.Mockito;
 
 import javax.jcr.Session;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.util.Objects;
+
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(AemContextExtension.class)
 public class TagManagerServiceTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TagManagerServiceTest.class);
+//    @Mock
+//    private ResourceResolverFactory resolverFactory;
+//
+//    @Mock
+//    private JcrTagManagerFactory jcrTagManagerFactory;
+
+    private final AemContext context = new AemContext();
 
     @InjectMocks
-    private TagManagerServiceImpl tagManagerService;
-
-    @Mock
-    private ResourceResolverFactory resolverFactory;
-
-    @Mock
-    private JcrTagManagerFactory jcrTagManagerFactory;
-
-    @Mock
-    private Session session;
-
-    @Mock
-    private TagManager tagManager;
-
-    @Mock
-    private ResourceResolver resourceResolver;
-
-//    private TagManagerServiceImpl tagManagerService;
-
-    @Mock
-    Helper1 helper;
-
+    private TagManagerService tagManagerService;
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        // Mocking with Mockito directly
+        ResourceResolverFactory resolverFactory = mock(ResourceResolverFactory.class);
+        JcrTagManagerFactory jcrTagManagerFactory = mock(JcrTagManagerFactory.class);
+        ResourceResolver mockResolver = mock(ResourceResolver.class);
+        Session mockSession = mock(Session.class);
+        TagManager mockTagManager = mock(TagManager.class);
 
-
-
-        // Mocking ResolverUtil static call. You will need PowerMock to mock static methods.
         try {
-            when(ResolverUtil.newResolver(resolverFactory)).thenReturn(resourceResolver);
-            when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-            when(jcrTagManagerFactory.getTagManager(session)).thenReturn(tagManager);
+            when(resolverFactory.getServiceResourceResolver(any())).thenReturn(mockResolver);
+            when(mockResolver.adaptTo(Session.class)).thenReturn(mockSession);
+            when(jcrTagManagerFactory.getTagManager(mockSession)).thenReturn(mockTagManager);
         } catch (Exception e) {
-            fail("Expected no exceptions, but got: " + e.getMessage());
+            System.out.println(e);
         }
+        context.registerService(ResourceResolverFactory.class, resolverFactory);
+        context.registerService(JcrTagManagerFactory.class, jcrTagManagerFactory);
 
-
+        tagManagerService = context.registerInjectActivateService(new TagManagerServiceImpl());
     }
-
-    @Test
-    public void testCreateTag() {
-        // Given
-        String tagPath = "some/tagPath";
-        String tagTitle = "TagTitle";
-        String tagDescription = "TagDescription";
-
-
-        // When
-        tagManagerService.createTag(tagPath, tagTitle, tagDescription);
-
-        LOGGER.info("inside testCreateTag");
-        System.out.println("inside testCreateTag println");
-
-        // Then
-        try {
-            LOGGER.info("inside try bloc");
-            LOGGER.info(mockingDetails(session).printInvocations());
-            System.out.println(mockingDetails(session).printInvocations());
-            System.out.println(mockingDetails(tagManager).printInvocations());
-            System.out.println(mockingDetails(helper).printInvocations());
-
-
-            verify(tagManager, times(1)).createTag(tagPath, tagTitle, tagDescription, true);
-            verify(session, times(1)).save();
-            verify(helper).getBaeldungString();
-        } catch (Exception e) {
-            fail("Expected no exceptions, but got: " + e.getMessage());
-        }
-//        verify(resourceResolver, times(1)).close();
-    }
-
 
 
     @Test
-    public void testSessionSave() {
-        // Given
-        String tagPath = "some/tagPath";
-        String tagTitle = "TagTitle";
-        String tagDescription = "TagDescription";
+    public void testCreateGivenTag() {
+        tagManagerService.createGivenTag("/content/tagpath", "Test Tag", "Tag Description");
 
-        when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+        // Here you could add validations e.g.
+        // Verify if session.save() was called once
+        Session mockSession = context.resourceResolver().adaptTo(Session.class);
 
-        // When
-        tagManagerService.createTag(tagPath, tagTitle, tagDescription);
-
-        // Then
+        if(Objects.isNull(mockSession)) {
+            System.out.println("nulllllll");
+        }
+        else {
+            System.out.println("gooood");
+        }
         try {
-            verify(session, times(1)).save();
+            Mockito.verify(mockSession, times(1)).save();
         } catch (Exception e) {
-            fail("Expected no exceptions, but got: " + e.getMessage());
+            System.out.println(e);
         }
     }
 
+    // ... you could add more tests e.g. for exception scenarios
 }

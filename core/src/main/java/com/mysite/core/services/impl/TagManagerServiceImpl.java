@@ -35,7 +35,7 @@ public class TagManagerServiceImpl implements TagManagerService {
     private JcrTagManagerFactory jcrTagManagerFactory;
 
 
-    public void createTag(String tagPath, String tagTitle, String tagDescription) {
+    public void createGivenTag(String tagPath, String tagTitle, String tagDescription) {
         ResourceResolver resourceResolver = null;
         Session session = null;
 

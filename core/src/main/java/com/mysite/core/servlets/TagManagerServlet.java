@@ -66,7 +66,7 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 //             serviceResult = serviceResult = tagManagerService.retrieveCFbyTags("/content/dam", new String[] { "customtags:tagone" });
 
 //            "/content/cq:tags/example-namespace/example-tag"
-            tagManagerService.createTag(path_param, title_param, "tag custom desc");
+            tagManagerService.createGivenTag(path_param, title_param, "tag custom desc");
         }
         catch (Exception e) {
             LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());

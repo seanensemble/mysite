@@ -71,7 +71,7 @@ public class TagManagerServiceImplTest {
 
     @Test
     public void testCreateTag() {
-        tagManagerService.createTag("/content/tag", "Test Tag", "This is a test tag");
+        tagManagerService.createGivenTag("/content/tag", "Test Tag", "This is a test tag");
         try {
             verify(tagManager, times(1)).createTag(anyString(), anyString(), anyString(), anyBoolean());
             verify(resourceResolver, times(1)).adaptTo(Session.class);
