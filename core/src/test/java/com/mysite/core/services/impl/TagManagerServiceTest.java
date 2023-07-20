@@ -1,9 +1,8 @@
-package com.mysite.core.services;
+package com.mysite.core.services.impl;
 
 import com.day.cq.tagging.JcrTagManagerFactory;
 import com.day.cq.tagging.TagManager;
 import com.mysite.core.helper.Helper1;
-import com.mysite.core.services.impl.TagManagerServiceImpl;
 import com.mysite.core.utils.ResolverUtil;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;

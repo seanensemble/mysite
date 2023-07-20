@@ -1,4 +1,4 @@
-package com.mysite.core.services;
+package com.mysite.core.services.impl;
 
 import com.day.cq.commons.RangeIterator;
 import com.day.cq.tagging.JcrTagManagerFactory;
@@ -23,8 +23,7 @@ import javax.jcr.Session;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -55,8 +54,6 @@ public class TagManagerServiceImplTest {
     @Mock
     private RangeIterator<Resource> iterator;
 
-
-
     @InjectMocks
     private TagManagerServiceImpl tagManagerService;
 
@@ -69,7 +66,7 @@ public class TagManagerServiceImplTest {
         lenient().when(tagManager.getTags(resource)).thenReturn(new Tag[]{tag});
 
 //        MockitoAnnotations.openMocks(this);
-
+        session.save();
     }
 
     @Test
@@ -78,6 +75,12 @@ public class TagManagerServiceImplTest {
         try {
             verify(tagManager, times(1)).createTag(anyString(), anyString(), anyString(), anyBoolean());
             verify(resourceResolver, times(1)).adaptTo(Session.class);
+
+//            assertTrue(session.hasPendingChanges());
+//
+//            session.save();
+
+            assertFalse(session.hasPendingChanges());
 
 //            verify(session, times(1)).save();
         } catch (Exception e) {
