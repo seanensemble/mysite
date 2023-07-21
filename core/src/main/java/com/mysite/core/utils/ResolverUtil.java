@@ -32,7 +32,5 @@ public final class ResolverUtil {
         ResourceResolver resolver = resourceResolverFactory.getServiceResourceResolver(paramMap);
         return resolver;
     }
-
-
 }
 

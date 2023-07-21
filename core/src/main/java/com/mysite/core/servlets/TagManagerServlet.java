@@ -2,6 +2,7 @@
 
 package com.mysite.core.servlets;
 
+import com.mysite.core.services.SessionTest;
 import com.mysite.core.services.TagManagerService;
 import com.mysite.core.services.TagService;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -32,6 +33,9 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
     @Reference
     TagManagerService tagManagerService;
 
+    @Reference
+    SessionTest sessionTest;
+
     @Override
     protected void doPost(SlingHttpServletRequest req, SlingHttpServletResponse resp)
             throws ServletException, IOException {
@@ -61,12 +65,19 @@ public class TagManagerServlet extends SlingAllMethodsServlet {
 
             LOG.info("spath_before___TagManagerServlet {}", path_param);
 
+            /*** substituting starts ***/
+
+
 //            tagManagerService.retrieveTags("/content/dam/mysite/asset.jpg");
 //
 //             serviceResult = serviceResult = tagManagerService.retrieveCFbyTags("/content/dam", new String[] { "customtags:tagone" });
 
 //            "/content/cq:tags/example-namespace/example-tag"
-            tagManagerService.createGivenTag(path_param, title_param, "tag custom desc");
+//            tagManagerService.createGivenTag(path_param, title_param, "tag custom desc");
+
+            sessionTest.setRandomNode();
+
+            /*** substituting ends ***/
         }
         catch (Exception e) {
             LOG.info("\n ERROR IN REQUEST {} ",e.getMessage());

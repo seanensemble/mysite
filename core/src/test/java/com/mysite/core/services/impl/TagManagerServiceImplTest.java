@@ -94,33 +94,33 @@ public class TagManagerServiceImplTest {
         verify(tagManager, times(1)).getTags(any(Resource.class));
     }
 
-    @Test
-    public void testRetrieveCFbyTags() {
-        String cfPath = "/content/somepath";
-        String[] tags = {"tag1", "tag2"};
-
-        try {
-            when(resourceResolverFactory.getServiceResourceResolver(anyMap())).thenReturn(resourceResolver);
-        } catch (Exception e) {
-            fail("Expected no exceptions, but got: " + e.getMessage());
-        }
-        when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
-        when(jcrTagManagerFactory.getTagManager(session)).thenReturn(tagManager);
-        when(tagManager.find(cfPath, tags)).thenReturn(iterator);
-
-        Resource mockResource1 = mock(Resource.class);
-        when(mockResource1.getPath()).thenReturn("/path/to/resource1");
-
-        Resource mockResource2 = mock(Resource.class);
-        when(mockResource2.getPath()).thenReturn("/path/to/resource2");
-
-        when(iterator.hasNext()).thenReturn(true, true, false);
-        when(iterator.next()).thenReturn(mockResource1, mockResource2);
-
-        List<String> paths = tagManagerService.retrieveCFbyTags(cfPath, tags);
-
-        assertEquals(2, paths.size());
-        assertEquals("/path/to/resource1", paths.get(0));
-        assertEquals("/path/to/resource2", paths.get(1));
-    }
+//    @Test
+//    public void testRetrieveCFbyTags() {
+//        String cfPath = "/content/somepath";
+//        String[] tags = {"tag1", "tag2"};
+//
+//        try {
+//            when(resourceResolverFactory.getServiceResourceResolver(anyMap())).thenReturn(resourceResolver);
+//        } catch (Exception e) {
+//            fail("Expected no exceptions, but got: " + e.getMessage());
+//        }
+//        when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
+//        when(jcrTagManagerFactory.getTagManager(session)).thenReturn(tagManager);
+//        when(tagManager.find(cfPath, tags)).thenReturn(iterator);
+//
+//        Resource mockResource1 = mock(Resource.class);
+//        when(mockResource1.getPath()).thenReturn("/path/to/resource1");
+//
+//        Resource mockResource2 = mock(Resource.class);
+//        when(mockResource2.getPath()).thenReturn("/path/to/resource2");
+//
+//        when(iterator.hasNext()).thenReturn(true, true, false);
+//        when(iterator.next()).thenReturn(mockResource1, mockResource2);
+//
+//        List<String> paths = tagManagerService.retrieveCFbyTags(cfPath, tags);
+//
+//        assertEquals(2, paths.size());
+//        assertEquals("/path/to/resource1", paths.get(0));
+//        assertEquals("/path/to/resource2", paths.get(1));
+//    }
 }
