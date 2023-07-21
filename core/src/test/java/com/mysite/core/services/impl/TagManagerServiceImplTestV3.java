@@ -41,6 +41,14 @@ public class TagManagerServiceImplTestV3 {
         // Mock ResourceResolverFactory, JcrTagManagerFactory and others
         ResourceResolver resourceResolver = mock(ResourceResolver.class);
         session = mock(Session.class);
+
+        if(Objects.isNull(session)) {
+            System.out.println("nulllllll session");
+        }
+        else {
+            System.out.println("gooood session");
+        }
+
         tagManager = mock(TagManager.class);
         jcrTagManagerFactory = mock(JcrTagManagerFactory.class);
 
@@ -71,7 +79,7 @@ public class TagManagerServiceImplTestV3 {
 
         TagManagerService.createGivenTag(tagPath, tagTitle, tagDescription);
 
-//        verify(tagManager).createTag(tagPath, tagTitle, tagDescription, true);
+        verify(tagManager).createTag(tagPath, tagTitle, tagDescription, true);
 //        verify(session).save();
 
         if(Objects.isNull(session)) {
