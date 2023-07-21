@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Component(service = TagManagerService.class, immediate = true)
+//@Component(service = TagManagerService.class, immediate = true)
+@Component(service = TagManagerService.class)
 public class TagManagerServiceImpl implements TagManagerService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TagManagerServiceImpl.class);
