@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
+import static org.mockito.Mockito.*;
 import javax.jcr.Node;
 import javax.jcr.Session;
 import java.util.HashSet;
@@ -29,7 +29,7 @@ class SessionTestImplTest {
     private final AemContext context = new AemContext();
 
     @Mock
-    private ResourceResolverFactory mockResourceResolverFactory;
+    private ResourceResolverFactory mockResolverFactory;
 
     @Mock
     private ResourceResolver mockResourceResolver;
@@ -45,21 +45,22 @@ class SessionTestImplTest {
 
     @BeforeEach
     void setUp() throws Exception {
+        // Initialize the mocks
         MockitoAnnotations.openMocks(this);
 
-        context.registerService(ResourceResolverFactory.class, mockResourceResolverFactory);
+        // Mock the behavior for the resolverFactory
+        when(mockResolverFactory.getServiceResourceResolver(any())).thenReturn(mockResourceResolver);
 
-        // Mocking the behavior of resolverFactory to return mockResourceResolver
-        when(mockResourceResolverFactory.getResourceResolver(anyMap())).thenReturn(mockResourceResolver);
-
-        // Mocking the behavior of resourceResolver to return mockSession
+        // Mock the behavior for the resourceResolver
         when(mockResourceResolver.adaptTo(Session.class)).thenReturn(mockSession);
 
-        // Mocking Nodes
+        // Mock the behavior for session.getRootNode() and other node operations
         when(mockSession.getRootNode()).thenReturn(rootNode);
-        when(rootNode.getNode(anyString())).thenReturn(nodeContainer);
+        when(rootNode.getNode("content/cq:tags/example-namespace/example-tag3")).thenReturn(nodeContainer);
+        when(nodeContainer.addNode("customAdd2")).thenReturn(mock(Node.class));
 
-        // Registering the service under test
+        // Register the service with the mock
+        context.registerService(ResourceResolverFactory.class, mockResolverFactory);
         context.registerInjectActivateService(new SessionTestImpl());
     }
 
@@ -68,14 +69,13 @@ class SessionTestImplTest {
         // Get the OSGi service
         SessionTest sessionTest = context.getService(SessionTest.class);
 
-        // Invoking the service method
+        // Call the method we want to test
         sessionTest.setRandomNode();
 
-        // Assertions
-//        verify(mockSession).save(); // Verify session.save() was called
-//        verify(nodeContainer).addNode("customAdd"); // Verify that the node was added
+        // Verify that the session.save() method was called
+//        verify(mockSession, times(1)).save();
 
-        verify(mockResourceResolver).adaptTo(Session.class);
-
+        // Verify that the node was added
+        verify(nodeContainer, times(1)).addNode("customAdd2");
     }
 }
